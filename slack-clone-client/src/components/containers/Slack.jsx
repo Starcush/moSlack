@@ -9,6 +9,7 @@ import {
 } from '../views/StyledComponents';
 import * as styledVariables from '../views/styledVariables';
 import { channelSize } from '../views/styledVariables';
+import Option from './Option';
 
 const Slack = () => (
   <>
@@ -17,14 +18,7 @@ const Slack = () => (
       height={styledVariables.slackBoxHeight}
     >
       <Row>
-        <OptionDiv
-          width={styledVariables.optionBoxWidth}
-          height={styledVariables.optionBoxHeight}
-          background={styledVariables.defaultColor}
-          size={styledVariables.optionFlexSize}
-        >
-          Option
-        </OptionDiv>
+        <Option />
       </Row>
       <Row>
         <WorkSpaceDiv
