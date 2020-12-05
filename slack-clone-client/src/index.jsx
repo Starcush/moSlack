@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+
 import App from './App';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
+
+const GlobalStyle = createGlobalStyle`
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    box-sizing: border-box;
+  }
+`;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={{ backgroundColor: '#4A154B' }}>
+      <App />
+      <GlobalStyle />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
