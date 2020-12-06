@@ -26,7 +26,7 @@ const Slack = () => (
           size={styledVariables.workSpaceSize}
           height={styledVariables.secondRowHeight}
         >
-          WorkSpace
+          Work
         </WorkSpaceDiv>
         <ChannelListDiv
           background={styledVariables.defaultColor}
