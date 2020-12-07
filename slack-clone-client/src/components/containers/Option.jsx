@@ -1,5 +1,6 @@
 import React from 'react';
 
+/* eslint-disable */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,32 +14,32 @@ import {
 } from '../views/StyledComponents';
 import * as style from '../views/styledVariables';
 
-const Option = () => {
-  const [mouseEnteredLeft, setMouseEnteredLeft] = React.useState(false);
-  const [mouseEnteredRight, setMouseEnteredRight] = React.useState(false);
+const Option = (props) => {
+  const [arrowLeft, setArrowLeft] = React.useState(false);
+  const [arrowRight, setArrowRight] = React.useState(false);
 
   return (
     <OptionDiv>
       <OptionArrowDiv>
         <RightArrowDiv
-          background={mouseEnteredRight}
-          onMouseEnter={mouseEnterEvent}
+          background={arrowRight}
+          onMouseEnter={mouseEnterEventRight}
           onMouseLeave={mouseLeaveEvent}
         >
           <FontAwesomeIcon
             icon={faArrowRight}
-            style={{ color: mouseEnteredRight ? '#DEDEDE' : style.lightPurple }}
+            style={{ color: arrowRight ? '#DEDEDE' : style.lightPurple }}
             onClick={forwardSpace}
           />
         </RightArrowDiv>
         <LeftArrowDiv
-          background={mouseEnteredLeft}
-          onMouseEnter={mouseEnterEvent}
+          background={arrowLeft}
+          onMouseEnter={mouseEnterEventLeft}
           onMouseLeave={mouseLeaveEvent}
         >
           <FontAwesomeIcon
             icon={faArrowLeft}
-            style={{ color: style.lightPurple }}
+            style={{ color: arrowLeft ? '#DEDEDE' : style.lightPurple }}
             onClick={backSpace}
           />
         </LeftArrowDiv>
@@ -57,12 +58,18 @@ const Option = () => {
     console.log('forward space button');
   }
 
-  function mouseEnterEvent() {
-    console.log('mouse enter');
+  function mouseEnterEventRight() {
+    setArrowRight(!arrowRight);
+  }
+
+  function mouseEnterEventLeft() {
+    setArrowLeft(!arrowLeft);
   }
 
   function mouseLeaveEvent() {
     console.log('mouse leave');
+    if(arrowRight) setArrowRight(!arrowRight);
+    if(arrowLeft) setArrowLeft(!arrowLeft);
   }
 };
 

@@ -31,7 +31,6 @@ export const OptionArrowDiv = styled.div`
 `;
 
 export const LeftArrowDiv = styled.div`
-  background-color: ${(props) => (props.background ? style.lightPurple : 'transparent')};
   border-radius: 3px;
   line-height: 5px;
 `;
