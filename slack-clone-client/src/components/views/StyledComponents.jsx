@@ -57,6 +57,24 @@ export const OptionInput = styled.input`
   color: #ededed;
 `;
 
+export const ProfileContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ProfileDiv = styled.div`
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const WorkSpaceDiv = styled.div`
   flex: 1;
   background: ${(props) => props.theme.backgroundColor};
