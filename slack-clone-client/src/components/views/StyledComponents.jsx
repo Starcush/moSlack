@@ -57,11 +57,42 @@ export const OptionInput = styled.input`
   color: #ededed;
 `;
 
-export const WorkSpaceDiv = styled.div`
+export const ProfileContainer = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ProfileDiv = styled.div`
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const WorkSpaceContainer = styled.div`
+  width: 70px;
   background: ${(props) => props.theme.backgroundColor};
   color: white;
   height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid ${style.lightPurple};
+  border-right: 1px solid ${style.lightPurple}; 
+`;
+
+export const WorkSpaceDiv = styled.div`
+  background-color: white;
+  width: 37px;
+  height: 37px;
+  margin-top: 20px;
+  border-radius: 5px;
 `;
 
 export const ChannelListDiv = styled.div`
@@ -69,6 +100,7 @@ export const ChannelListDiv = styled.div`
   background: ${(props) => props.theme.backgroundColor};
   color: white;
   height: 90vh;
+  border-top: 1px solid ${style.lightPurple};
 `;
 
 export const ChannelDiv = styled.div`
