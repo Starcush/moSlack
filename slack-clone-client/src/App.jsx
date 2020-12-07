@@ -1,7 +1,8 @@
 import React from 'react';
+import Slack from './components/containers/Slack';
 
 function App() {
-  return <h2>App</h2>;
+  return <Slack />;
 }
 
 export default App;
