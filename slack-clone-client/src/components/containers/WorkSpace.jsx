@@ -1,5 +1,11 @@
 import React from 'react';
 
-const WorkSpace = () => <h2>WorkSpace</h2>;
+import { WorkSpaceContainer, WorkSpaceDiv } from '../views/StyledComponents';
+
+const WorkSpace = () => (
+  <WorkSpaceContainer>
+    <WorkSpaceDiv />
+  </WorkSpaceContainer>
+);
 
 export default WorkSpace;
