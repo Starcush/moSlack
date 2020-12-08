@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { CaretRight } from '@styled-icons/fa-solid';
+
 import style from './styledVariables';
 
 export const SlackDiv = styled.div`
@@ -84,7 +86,7 @@ export const WorkSpaceContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border-top: 1px solid ${style.lightPurple};
-  border-right: 1px solid ${style.lightPurple}; 
+  border-right: 1px solid ${style.lightPurple};
 `;
 
 export const WorkSpaceDiv = styled.div`
@@ -95,12 +97,47 @@ export const WorkSpaceDiv = styled.div`
   border-radius: 5px;
 `;
 
-export const ChannelListDiv = styled.div`
+export const ChannelListContainer = styled.div`
   flex: 2;
   background: ${(props) => props.theme.backgroundColor};
   color: white;
   height: 90vh;
   border-top: 1px solid ${style.lightPurple};
+`;
+
+export const ChannelListDiv = styled.div``;
+
+export const ChannelHead = styled.h4`
+  margin-top: 18px;
+  margin-left: 25px;
+  color: ${(props) => (props.clicked ? '#fff' : style.lightPurple)};
+`;
+
+const toggleList = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+`;
+
+const untoggleList = keyframes`
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+`;
+
+export const ToggleArrow = styled(CaretRight)`
+  width: 1em;
+  height: 1em;
+  margin-bottom: 2px;
+  color: ${style.lightPurple};
+  animation: ${(props) => (props.clicked ? toggleList : untoggleList)} 0.1s
+    linear forwards;
 `;
 
 export const ChannelDiv = styled.div`
