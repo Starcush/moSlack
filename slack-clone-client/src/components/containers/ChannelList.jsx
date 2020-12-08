@@ -6,11 +6,10 @@ import {
   ChannelHead,
   ToggleArrow,
 } from '../views/StyledComponents';
+import Channels from './Channels';
 
 const ChannelList = () => {
   const [toggleClicked, setToggleClicked] = useState(false);
-
-  const listArr = ['가입인사', '취직준비', '컴퓨터 부품'];
 
   return (
     <ChannelListContainer>
@@ -19,6 +18,7 @@ const ChannelList = () => {
           <ToggleArrow onClick={toggleList} clicked={toggleClicked} />
           Channels
         </ChannelHead>
+        <Channels />
       </ChannelListDiv>
     </ChannelListContainer>
   );

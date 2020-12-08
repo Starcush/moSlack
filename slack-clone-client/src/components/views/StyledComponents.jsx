@@ -140,6 +140,8 @@ export const ToggleArrow = styled(CaretRight)`
     linear forwards;
 `;
 
+export const ChannelsUl = styled.ul``;
+
 export const ChannelDiv = styled.div`
   flex: 12;
   height: 90vh;
