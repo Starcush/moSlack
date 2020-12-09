@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { CaretRight } from '@styled-icons/fa-solid';
+import { CaretRight, Plus } from '@styled-icons/fa-solid';
 
 import style from './styledVariables';
 
@@ -98,18 +98,20 @@ export const WorkSpaceDiv = styled.div`
 `;
 
 export const ChannelListContainer = styled.div`
-  flex: 2;
+  width: 180px;
   background: ${(props) => props.theme.backgroundColor};
   color: white;
   height: 90vh;
   border-top: 1px solid ${style.lightPurple};
 `;
 
-export const ChannelListDiv = styled.div``;
+export const ChannelListHeader = styled.div`
+  margin-left: 20px;
+`;
 
 export const ChannelHead = styled.h4`
-  margin-top: 18px;
-  margin-left: 25px;
+  display: inline-block;
+  margin: 21px 0 0 0;
   color: ${(props) => (props.clicked ? '#fff' : style.lightPurple)};
 `;
 
@@ -134,13 +136,45 @@ const untoggleList = keyframes`
 export const ToggleArrow = styled(CaretRight)`
   width: 1em;
   height: 1em;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
+  margin-right: 3px;
   color: ${style.lightPurple};
   animation: ${(props) => (props.clicked ? toggleList : untoggleList)} 0.1s
     linear forwards;
 `;
 
-export const ChannelsUl = styled.ul``;
+export const AddChannelBtn = styled(Plus)`
+  position: relative;
+  left: 30px;
+  bottom: 1px;
+  width: 13px;
+  height: 13px;
+  color: ${style.lightPurple};
+
+  &:hover {
+    color: #fff;
+  }
+`;
+
+export const ChannelsLinkDiv = styled.div`
+  &:hover {
+    background-color: #350d36;
+  }
+`;
+
+export const ChannelsLink = styled.a`
+  text-decoration: none;
+  display: block;
+  margin-block-start: 0em;
+  color: ${style.lightPurple};
+  margin-left: 35px;
+  padding: 0;
+  margin-top: 0;
+
+  &:hover {
+    color: #fff;
+  }
+`;
 
 export const ChannelDiv = styled.div`
   flex: 12;

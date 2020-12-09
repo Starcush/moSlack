@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 import {
   ChannelListContainer,
-  ChannelListDiv,
+  ChannelListHeader,
   ChannelHead,
   ToggleArrow,
+  AddChannelBtn,
 } from '../views/StyledComponents';
 import Channels from './Channels';
 
@@ -13,18 +14,21 @@ const ChannelList = () => {
 
   return (
     <ChannelListContainer>
-      <ChannelListDiv>
-        <ChannelHead clicked={toggleClicked}>
-          <ToggleArrow onClick={toggleList} clicked={toggleClicked} />
-          Channels
-        </ChannelHead>
-        <Channels />
-      </ChannelListDiv>
+      <ChannelListHeader>
+        <ToggleArrow onClick={toggleList} clicked={toggleClicked} />
+        <ChannelHead clicked={toggleClicked}>Channels</ChannelHead>
+        <AddChannelBtn onClick={addChannel} />
+      </ChannelListHeader>
+      {toggleClicked ? <Channels /> : <></>}
     </ChannelListContainer>
   );
 
   function toggleList() {
     setToggleClicked(!toggleClicked);
+  }
+
+  function addChannel() {
+    console.log('click add channel button');
   }
 };
 
