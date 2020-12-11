@@ -1,10 +1,11 @@
 import React from 'react';
-import { Row, SlackDiv, ChannelDiv } from '../views/StyledComponents';
+import { Row1, Row2, SlackDiv } from '../views/StyledComponents';
 import * as styledVariables from '../views/styledVariables';
 import { channelSize } from '../views/styledVariables';
 import Option from './Option';
 import WorkSpace from './WorkSpace';
 import ChannelList from './ChannelList';
+import Channel from './Channel';
 
 const Slack = () => (
   <>
@@ -12,16 +13,14 @@ const Slack = () => (
       width={styledVariables.slackBoxWidth}
       height={styledVariables.slackBoxHeight}
     >
-      <Row>
+      <Row1>
         <Option />
-      </Row>
-      <Row>
+      </Row1>
+      <Row2>
         <WorkSpace />
         <ChannelList />
-        <ChannelDiv size={channelSize} height={styledVariables.secondRowHeight}>
-          Channel
-        </ChannelDiv>
-      </Row>
+        <Channel />
+      </Row2>
     </SlackDiv>
   </>
 );
