@@ -27,7 +27,7 @@ export const Row2 = styled.div`
 export const OptionDiv = styled.div`
   background: #350d36;
   color: white;
-  width: 100%;
+  width: calc(100vw - 20px);
   flex: 1;
   display: flex;
 `;
@@ -107,11 +107,11 @@ export const WorkSpaceDiv = styled.div`
 `;
 
 export const ChannelListContainer = styled.div`
-  left: 75px;
   flex: 3;
   background: ${(props) => props.theme.backgroundColor};
   color: white;
   height: auto;
+  min-width: 162px;
   border-top: 1px solid ${style.lightPurple};
 `;
 
@@ -188,14 +188,47 @@ export const ChannelsLink = styled.a`
 
 export const ChannelContainer = styled.div`
   flex: 24;
-  height: 90vh;
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: calc((100vw - 20px) * (24 / 28));
+  height: calc((100vh - 20px) * (39 / 41));
   box-sizing: border-box;
   border-bottom: 1px solid gray;
   border-right: 1px solid gray;
 `;
+
+export const ContentsListDiv = styled.div`
+  width: calc((100vw - 20px) * (24 / 28));
+  flex: 30;
+  overflow-y: scroll;
+  height: calc((85vh - 20px) * (39 / 41));
+`;
+
+export const ChannelContentsDiv = styled.div`
+  padding: 20px 30px 20px 30px;
+  display: flex;
+  width: calc((100vw - 120px) * (24 / 28));
+
+  &:hover {
+    background-color: #ededed;
+  }
+`;
+
+export const ImgCol = styled.div`
+  flex: 1;
+  margin-right: 10px;
+`;
+
+export const ContentCol = styled.div`
+  flex: 25;
+`;
+
+export const ProfileImgDiv = styled.div``;
+
+export const UserDiv = styled.div``;
+
+export const Time = styled.time``;
+
+export const ContentSection = styled.section``;
 
 export const InsertContainer = styled.div`
   flex: 1;
@@ -204,9 +237,12 @@ export const InsertContainer = styled.div`
   box-sizing: border-box;
   position: fixed;
   bottom: 10px;
-  width: calc(100vw - 20px - (100vw * (1 / 7)));
-  height: 15%;
+  width: calc((100vw - 20px) * (24 / 28));
+  height: 15vh;
   padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
 `;
 
 export const InputDiv = styled.div`
@@ -234,6 +270,7 @@ export const ButtonDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: #fff;
 `;
 
 export const InputButton = styled(Send)`

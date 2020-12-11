@@ -8,12 +8,14 @@ import {
   ButtonDiv,
   InputButton,
 } from '../views/StyledComponents';
+import ChannelContentsList from './ChannelContentList';
 
 const Channel = () => {
   const [text, setText] = useState('');
 
   return (
     <ChannelContainer>
+      <ChannelContentsList />
       <InsertContainer>
         <InputDiv>
           <Textarea
