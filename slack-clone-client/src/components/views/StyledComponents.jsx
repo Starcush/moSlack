@@ -1,24 +1,33 @@
 import styled, { keyframes } from 'styled-components';
 import { CaretRight, Plus } from '@styled-icons/fa-solid';
+import { Send } from '@styled-icons/material-rounded';
 
 import style from './styledVariables';
 
 export const SlackDiv = styled.div`
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
-  padding: 1em;
   width: 100vw;
   height: 100vh;
+  padding: 10px;
+  margin: 0;
 `;
 
-export const Row = styled.div`
+export const Row1 = styled.div`
   display: flex;
+  flex: 2;
+`;
+
+export const Row2 = styled.div`
+  display: flex;
+  flex: 39;
 `;
 
 export const OptionDiv = styled.div`
   background: #350d36;
   color: white;
-  width: 100%;
-  height: 45px;
+  width: calc(100vw - 20px);
   flex: 1;
   display: flex;
 `;
@@ -78,10 +87,10 @@ export const ProfileDiv = styled.div`
 `;
 
 export const WorkSpaceContainer = styled.div`
-  width: 70px;
+  flex: 1;
   background: ${(props) => props.theme.backgroundColor};
   color: white;
-  height: 90vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,10 +107,11 @@ export const WorkSpaceDiv = styled.div`
 `;
 
 export const ChannelListContainer = styled.div`
-  width: 180px;
+  flex: 3;
   background: ${(props) => props.theme.backgroundColor};
   color: white;
-  height: 90vh;
+  height: auto;
+  min-width: 162px;
   border-top: 1px solid ${style.lightPurple};
 `;
 
@@ -176,7 +186,101 @@ export const ChannelsLink = styled.a`
   }
 `;
 
-export const ChannelDiv = styled.div`
-  flex: 12;
-  height: 90vh;
+export const ChannelContainer = styled.div`
+  flex: 24;
+  display: flex;
+  width: calc((100vw - 20px) * (24 / 28));
+  height: calc((100vh - 20px) * (39 / 41));
+  box-sizing: border-box;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+`;
+
+export const ContentsListDiv = styled.div`
+  width: calc((100vw - 20px) * (24 / 28));
+  flex: 30;
+  overflow-y: scroll;
+  height: calc((85vh - 20px) * (39 / 41));
+`;
+
+export const ChannelContentsDiv = styled.div`
+  padding: 20px 30px 20px 30px;
+  display: flex;
+  width: calc((100vw - 120px) * (24 / 28));
+
+  &:hover {
+    background-color: #ededed;
+  }
+`;
+
+export const ImgCol = styled.div`
+  flex: 1;
+  margin-right: 10px;
+`;
+
+export const ContentCol = styled.div`
+  flex: 25;
+`;
+
+export const ProfileImgDiv = styled.div``;
+
+export const UserDiv = styled.div``;
+
+export const Time = styled.time``;
+
+export const ContentSection = styled.section``;
+
+export const InsertContainer = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 10px;
+  width: calc((100vw - 20px) * (24 / 28));
+  height: 15vh;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+`;
+
+export const InputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid #222222;
+  width: 98%;
+  margin-bottom: 10px;
+  border-radius: 3px;
+`;
+
+export const Textarea = styled.textarea`
+  flex: 2;
+  outline: none;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #878787;
+  width: 100%;
+  padding: 8px;
+`;
+
+export const ButtonDiv = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #fff;
+`;
+
+export const InputButton = styled(Send)`
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  color: gray;
+  cursor: pointer;
+
+  &:hover {
+    color: #222222;
+  }
 `;
