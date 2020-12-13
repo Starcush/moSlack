@@ -18,6 +18,7 @@ import {
   ProfileDiv,
 } from '../views/StyledComponents';
 import * as style from '../views/styledVariables';
+import GoogleLoginButton from './GoogleLogin';
 
 const Option = () => {
   const [arrowLeft, setArrowLeft] = React.useState(false);
@@ -54,7 +55,7 @@ const Option = () => {
       </OptionSearchDiv>
       <ProfileContainer>
         <ProfileDiv>
-          <FontAwesomeIcon icon={faUser} style={{ color: '#0074D9' }} />
+          <GoogleLoginButton />
         </ProfileDiv>
       </ProfileContainer>
     </OptionDiv>
