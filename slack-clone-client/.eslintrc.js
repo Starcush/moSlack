@@ -25,5 +25,10 @@ module.exports = {
     semi: ['error', 'always'],
     'no-unused-vars': ['warn'],
     'no-use-before-define': ['error', { functions: false, classes: true }],
+    'import/no-unresolved': [
+      2,
+      { caseSensitive: true },
+    ],
   },
+
 };
