@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { CaretRight, Plus } from '@styled-icons/fa-solid';
+import { CaretRight, Plus, User } from '@styled-icons/fa-solid';
 import { Send } from '@styled-icons/material-rounded';
 
 import style from './styledVariables';
@@ -84,6 +84,13 @@ export const ProfileDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const UserIcon = styled(User)`
+  color: #0074d9;
+  width: 18px;
+  height: 18px;
+  z-index: 3;
 `;
 
 export const WorkSpaceContainer = styled.div`
