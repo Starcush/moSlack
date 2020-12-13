@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { CaretRight, Plus } from '@styled-icons/fa-solid';
+
 import style from './styledVariables';
 
 export const SlackDiv = styled.div`
@@ -84,7 +86,7 @@ export const WorkSpaceContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border-top: 1px solid ${style.lightPurple};
-  border-right: 1px solid ${style.lightPurple}; 
+  border-right: 1px solid ${style.lightPurple};
 `;
 
 export const WorkSpaceDiv = styled.div`
@@ -95,12 +97,83 @@ export const WorkSpaceDiv = styled.div`
   border-radius: 5px;
 `;
 
-export const ChannelListDiv = styled.div`
-  flex: 2;
+export const ChannelListContainer = styled.div`
+  width: 180px;
   background: ${(props) => props.theme.backgroundColor};
   color: white;
   height: 90vh;
   border-top: 1px solid ${style.lightPurple};
+`;
+
+export const ChannelListHeader = styled.div`
+  margin-left: 20px;
+`;
+
+export const ChannelHead = styled.h4`
+  display: inline-block;
+  margin: 21px 0 0 0;
+  color: ${(props) => (props.clicked ? '#fff' : style.lightPurple)};
+`;
+
+const toggleList = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+`;
+
+const untoggleList = keyframes`
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+`;
+
+export const ToggleArrow = styled(CaretRight)`
+  width: 1em;
+  height: 1em;
+  margin-bottom: 3px;
+  margin-right: 3px;
+  color: ${style.lightPurple};
+  animation: ${(props) => (props.clicked ? toggleList : untoggleList)} 0.1s
+    linear forwards;
+`;
+
+export const AddChannelBtn = styled(Plus)`
+  position: relative;
+  left: 30px;
+  bottom: 1px;
+  width: 13px;
+  height: 13px;
+  color: ${style.lightPurple};
+
+  &:hover {
+    color: #fff;
+  }
+`;
+
+export const ChannelsLinkDiv = styled.div`
+  &:hover {
+    background-color: #350d36;
+  }
+`;
+
+export const ChannelsLink = styled.a`
+  text-decoration: none;
+  display: block;
+  margin-block-start: 0em;
+  color: ${style.lightPurple};
+  margin-left: 35px;
+  padding: 0;
+  margin-top: 0;
+
+  &:hover {
+    color: #fff;
+  }
 `;
 
 export const ChannelDiv = styled.div`
