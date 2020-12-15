@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import {
   ContentsListDiv,
@@ -11,19 +12,8 @@ import {
   ContentCol,
 } from '../views/StyledComponents';
 
-const ChannelContentsList = () => {
-  const list = [];
-
-  for (let i = 0; i < 20; i += 1) {
-    const content = {
-      user: `jun${i}`,
-      date: `someday${i}`,
-      img: `img${i}`,
-      content: `suallasuallaasdfasdfasdfasdfasdfasdfasdf1${i}`,
-    };
-
-    list.push(content);
-  }
+const ChannelContentsList = (props) => {
+  const { list } = props;
 
   return (
     <ContentsListDiv>
@@ -43,4 +33,8 @@ const ChannelContentsList = () => {
   );
 };
 
-export default ChannelContentsList;
+const mapStateToProps = (state) => ({
+  list: state.updateList.list,
+});
+
+export default connect(mapStateToProps)(ChannelContentsList);
