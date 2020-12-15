@@ -29,6 +29,7 @@ module.exports = {
       2,
       { caseSensitive: true },
     ],
+    'react/prop-types': 0,
   },
 
 };
