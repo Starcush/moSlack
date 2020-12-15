@@ -3,13 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
+    "@styled-icons/fa-solid": "^10.22.0",
+    "@styled-icons/material-rounded": "^10.18.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.3.0",
+    "dotenv": "^8.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-google-login": "^5.1.25",
     "react-scripts": "4.0.1",
     "styled-components": "^5.2.1",
+    "styled-icons": "^10.22.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -19,15 +27,6 @@
     "eject": "react-scripts eject",
     "lint": "node_modules/.bin/eslint src/**/*.{js,jsx} --fix",
     "prettier": "prettier --write \"src/**/*.{js,jsx,css,json}\""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "plugins": [
-      "html"
-    ]
   },
   "husky": {
     "hooks": {
@@ -60,7 +59,7 @@
     "pretty-quick": "^3.1.0"
   },
   "lint-staged": {
-    "*.js": "npm run lint",
-    "*.{js,css,md}": "npm run prettier"
+    "src/**/*.{js,jsx}": "npm run lint",
+    "src/**/*.{js,jsx,css,md}": "npm run prettier"
   }
 }

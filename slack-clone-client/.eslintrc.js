@@ -17,12 +17,18 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'html'],
   rules: {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-unused-vars': ['warn'],
+    'no-use-before-define': ['error', { functions: false, classes: true }],
+    'import/no-unresolved': [
+      2,
+      { caseSensitive: true },
+    ],
   },
+
 };

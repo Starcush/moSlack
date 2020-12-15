@@ -1,34 +1,27 @@
 import React from 'react';
+import { Row1, Row2, SlackDiv } from '../views/StyledComponents';
+import * as styledVariables from '../views/styledVariables';
+import { channelSize } from '../views/styledVariables';
 import Option from './Option';
 import WorkSpace from './WorkSpace';
 import ChannelList from './ChannelList';
 import Channel from './Channel';
-import SlackVC from '../views/SlackVC';
-import OptionVC from '../views/OptionVC';
 
-const Slack = () => {
-  const boxStyle = {
-    border: '1px solid black',
-    width: '200px',
-    height: '200px',
-  };
-  /*
-    <div style={boxStyle}>
-        <div>
-          <p>Option</p>
-        </div>
-        <div>
-          <p>Channel</p>
-        </div>
-      </div>
-  */
-
-  return (
-    <>
-      <SlackVC>
-        <OptionVC />
-      </SlackVC>
-    </>
-  );
-};
+const Slack = () => (
+  <>
+    <SlackDiv
+      width={styledVariables.slackBoxWidth}
+      height={styledVariables.slackBoxHeight}
+    >
+      <Row1>
+        <Option />
+      </Row1>
+      <Row2>
+        <WorkSpace />
+        <ChannelList />
+        <Channel />
+      </Row2>
+    </SlackDiv>
+  </>
+);
 export default Slack;
