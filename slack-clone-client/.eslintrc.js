@@ -7,6 +7,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
     'airbnb',
     'airbnb/hooks',
   ],
@@ -17,7 +19,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'html'],
+  plugins: ['react', 'html', 'import'],
   rules: {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
@@ -27,9 +29,12 @@ module.exports = {
     'no-use-before-define': ['error', { functions: false, classes: true }],
     'import/no-unresolved': [
       2,
-      { caseSensitive: true },
+      { commonjs: true, amd: true },
     ],
+    'import/named': 2,
+    'import/namespace': 2,
+    'import/default': 2,
+    'import/export': 2,
     'react/prop-types': 0,
   },
-
 };
