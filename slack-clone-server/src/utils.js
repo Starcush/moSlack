@@ -41,8 +41,30 @@ const getUserInfo = async (email) => {
   }
 };
 
+const getChannelList = async () => {
+  try {
+    const query = 'select * from `CHANNELS`;';
+    const [rows] = await connection.promise().query(query);
+    return rows;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const addChannel = async (channelName) => {
+  try {
+    const query = 'insert into `CHANNELS` (`name`) values (?);';
+    const param = [channelName.name];
+    await connection.promise().query(query, param);
+  } catch (e) {
+    console.log('util addChannel', e);
+  }
+};
+
 module.exports = {
   checkUser,
   insertUser,
   getUserInfo,
+  getChannelList,
+  addChannel,
 };

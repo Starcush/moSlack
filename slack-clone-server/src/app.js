@@ -14,8 +14,18 @@ const schema = buildSchema(`
     profileImg: String
   }
 
+  type Channel {
+    id: Int
+    name: String!
+  }
+
   type Query {
     user(tokenId: String!): User
+    channelList: [Channel!]!
+  }
+
+  type Mutation {
+    addChannel(name: String!): [Channel!]!
   }
 `);
 

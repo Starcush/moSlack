@@ -6,7 +6,7 @@ const Channels = ({ channelList }) => (
   <>
     {channelList.map((el) => (
       <ChannelsLinkDiv>
-        <ChannelsLink href="/">{`# ${el}`}</ChannelsLink>
+        <ChannelsLink key={el.id} href="/">{`# ${el.name}`}</ChannelsLink>
       </ChannelsLinkDiv>
     ))}
   </>
