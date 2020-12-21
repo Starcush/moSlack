@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   ChannelListContainer,
@@ -9,18 +9,34 @@ import {
 } from '../views/StyledComponents';
 import Channels from './Channels';
 import AddChannelModal from './AddChannelModal';
+import getChannelList, { addChannel } from '../../js/apis/api';
 
 const ChannelList = () => {
+  const [isError, setIsError] = useState(false);
   const [toggleClicked, setToggleClicked] = useState(false);
   const [show, setShow] = useState(false);
   const [channelList, setChannelList] = useState([]);
+
+  useEffect(() => {
+    const fetchChannelList = async () => {
+      setIsError(false);
+      try {
+        const data = await getChannelList();
+        setChannelList([...data]);
+      } catch (e) {
+        setIsError(true);
+        console.log(e);
+      }
+    };
+    fetchChannelList();
+  }, [channelList]);
 
   return (
     <ChannelListContainer>
       <ChannelListHeader>
         <ToggleArrow onClick={toggleList} clicked={toggleClicked} />
         <ChannelHead clicked={toggleClicked}>Channels</ChannelHead>
-        <AddChannelBtn onClick={addChannel} />
+        <AddChannelBtn onClick={handleOpen} />
       </ChannelListHeader>
       {toggleClicked && channelList.length > 0 ? (
         <Channels channelList={channelList} />
@@ -39,8 +55,7 @@ const ChannelList = () => {
     setToggleClicked(!toggleClicked);
   }
 
-  function addChannel() {
-    console.log('click add channel button');
+  function handleOpen() {
     setShow(true);
   }
 
@@ -48,9 +63,13 @@ const ChannelList = () => {
     setShow(false);
   }
 
-  function handleChannelName(name) {
-    console.log('channel name', name);
-    setChannelList([...channelList, name]);
+  async function handleChannelName(name) {
+    try {
+      const data = await addChannel(name);
+      setChannelList([...data]);
+    } catch (e) {
+      console.log(e);
+    }
     handleClose();
   }
 };

@@ -248,6 +248,7 @@ export const ChannelsLink = styled.a`
   margin-left: 35px;
   padding: 0;
   margin-top: 0;
+  cursor: pointer;
 
   &:hover {
     color: #fff;
