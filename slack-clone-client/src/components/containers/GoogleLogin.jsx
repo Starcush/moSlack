@@ -3,6 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import dotenv from 'dotenv';
 
 import { UserIcon } from '../views/StyledComponents';
+import { googleLogin } from '../../js/apis/api';
 
 dotenv.config();
 
@@ -17,8 +18,9 @@ const GoogleLoginButton = () => {
     />
   );
 
-  function responseGoogle(res) {
-    console.log(res);
+  async function responseGoogle(res) {
+    const result = await googleLogin(res.tokenId);
+    console.log(result);
   }
 };
 
