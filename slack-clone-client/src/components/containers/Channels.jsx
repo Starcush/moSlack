@@ -1,15 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { ChannelsLink, ChannelsLinkDiv } from '../views/StyledComponents';
+import { updateChannelID } from '../../js/redux/actions';
+import { ChannelsLinkDiv, ChannelsLink } from '../views/StyledComponents';
 
-const Channels = ({ channelList }) => (
-  <>
-    {channelList.map((el) => (
-      <ChannelsLinkDiv>
-        <ChannelsLink key={el.id} href="/">{`# ${el.name}`}</ChannelsLink>
-      </ChannelsLinkDiv>
-    ))}
-  </>
-);
+const Channels = (props) => {
+  const { channelList } = props;
 
-export default Channels;
+  return (
+    <>
+      {channelList.map((el) => (
+        <ChannelsLinkDiv>
+          <ChannelsLink key={el.id} onClick={() => handleClickChannelID(el.id)}>{`# ${el.name}`}</ChannelsLink>
+        </ChannelsLinkDiv>
+      ))}
+    </>
+  );
+
+  function handleClickChannelID(id) {
+    props.updateChannelID(id);
+  }
+};
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    updateChannelID,
+  }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Channels);

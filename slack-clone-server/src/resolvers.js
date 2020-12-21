@@ -8,6 +8,7 @@ const {
   getUserInfo,
   getChannelList,
   addChannel,
+  getChannelContents,
 } = require('./utils');
 
 dotenv.config();
@@ -60,13 +61,22 @@ const root = {
    * @param {string} channelName 입력한 채널 이름
    * @returns 추가한 후 채널 목록
    */
-  addChannel: async (channelName) => {
+  addChannel: async ({ name }) => {
     try {
-      await addChannel(channelName);
+      await addChannel(name);
       const result = await getChannelList();
       return result;
     } catch (e) {
       console.log('graphql resolver addChannel', e);
+    }
+  },
+  channelContents: async ({ channelId }) => {
+    try {
+      console.log('graphql resolver getChannelContents', channelId);
+      const result = await getChannelContents(channelId);
+      return result;
+    } catch (e) {
+      console.log('graphql resolver getChannelContents', e);
     }
   },
 };

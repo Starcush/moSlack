@@ -61,10 +61,23 @@ const addChannel = async (channelName) => {
   }
 };
 
+const getChannelContents = async (channelId) => {
+  try {
+    console.log(`query ${channelId} channel contents`);
+    const query = 'select * from `CHANNEL_CONTENTS` where channel_id = ?';
+    const param = [channelId];
+    const [rows] = await connection.promise().query(query, param);
+    return rows;
+  } catch (e) {
+    console.log('util getChannelContents', e);
+  }
+};
+
 module.exports = {
   checkUser,
   insertUser,
   getUserInfo,
   getChannelList,
   addChannel,
+  getChannelContents,
 };

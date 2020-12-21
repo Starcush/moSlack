@@ -86,4 +86,26 @@ export const addChannel = (channelName) => {
     });
 };
 
+export const getChannelContents = (channelId) => {
+  const query = `query {
+    channelContents(channelId: ${channelId}) {
+      id
+      user_id
+      channel_id
+      time
+      content
+    }
+  }`;
+
+  return fetch(endpoint, getQueryOption(query))
+    .then((res) => res.json())
+    .then(({ data }) => {
+      const { channelContents } = data;
+      return channelContents;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export default getChannelList;

@@ -19,9 +19,18 @@ const schema = buildSchema(`
     name: String!
   }
 
+  type Contents {
+    id: Int
+    user_id: Int
+    channel_id: Int
+    time: String
+    content: String
+  }
+
   type Query {
     user(tokenId: String!): User
     channelList: [Channel!]!
+    channelContents(channelId: Int!): [Contents]
   }
 
   type Mutation {
