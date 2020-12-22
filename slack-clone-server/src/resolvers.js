@@ -9,6 +9,7 @@ const {
   getChannelList,
   addChannel,
   getChannelContents,
+  postContent,
 } = require('./utils');
 
 dotenv.config();
@@ -72,11 +73,19 @@ const root = {
   },
   channelContents: async ({ channelId }) => {
     try {
-      console.log('graphql resolver getChannelContents', channelId);
+      console.log('graphql resolver channelContents', channelId);
       const result = await getChannelContents(channelId);
       return result;
     } catch (e) {
-      console.log('graphql resolver getChannelContents', e);
+      console.log('graphql resolver channelContents', e);
+    }
+  },
+  postContent: async ({ userID, channelID, content }) => {
+    try {
+      console.log('graphql resolver postContent', userID, channelID, content);
+      await postContent(userID, channelID, content);
+    } catch (e) {
+      console.log('graphql resolver postContent', e);
     }
   },
 };

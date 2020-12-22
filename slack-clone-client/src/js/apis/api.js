@@ -86,6 +86,11 @@ export const addChannel = (channelName) => {
     });
 };
 
+/**
+ * channel에 있는 모든 내용들을 불러온다
+ * @param {Int} channelId
+ * @returns [contents]
+ */
 export const getChannelContents = (channelId) => {
   const query = `query {
     channelContents(channelId: ${channelId}) {
@@ -106,6 +111,15 @@ export const getChannelContents = (channelId) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+export const postContent = (userID, channelID, content) => {
+  const query = `
+    mutation {
+      postContent(userID: ${userID}, channelID: ${channelID} , content: ${content})
+    }
+    
+  `;
 };
 
 export default getChannelList;
