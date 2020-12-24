@@ -1,20 +1,12 @@
-const express = require('express');
-const cors = require('cors');
-const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
-const http = require('http');
-const socketIo = require('socket.io');
+const { GraphQLServer, PubSub } = require('graphql-yoga');
 
 const dotenv = require('dotenv');
 
-const app = express();
-const server = http.createServer(app);
-const io = socketIo(server);
-
 dotenv.config();
 
-const schema = buildSchema(`
+const typeDefs = `
   type User {
+    id: Int
     name: String
     email: String
     profileImg: String
@@ -37,32 +29,24 @@ const schema = buildSchema(`
     user(tokenId: String!): User
     channelList: [Channel!]!
     channelContents(channelId: Int!): [Contents]
+    content(insertId: Int!): Contents
   }
 
   type Mutation {
     addChannel(name: String!): [Channel!]!
-    postContent(userID: Int!, channelID: Int!, content: String!)
+    postContent(userID: Int!, channelID: Int!, content: String!): [Contents]
   }
-`);
 
-const { root } = require('./resolvers');
+  type Subscription {
+    chat(channelId: Int!): [Contents]
+  }
+`;
 
-const port = 4000;
+const { resolvers } = require('./resolvers');
 
-app.use(cors());
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema,
-    rootValue: root,
-    graphiql: true,
-  }),
-);
+const pubsub = new PubSub();
+const server = new GraphQLServer({ typeDefs, resolvers, context: { pubsub } });
 
-io.on('connection', () => {
-  console.log('connected');
-});
-
-app.listen(port, () => {
+server.start(({ port }) => {
   console.log(`listening at http://localhost:${port}`);
 });

@@ -55,7 +55,7 @@ const getChannelList = async () => {
 const addChannel = async (channelName) => {
   try {
     const query = 'insert into `CHANNELS` (`name`) values (?);';
-    const param = [channelName.name];
+    const param = [channelName];
     await connection.promise().query(query, param);
   } catch (e) {
     console.log('util addChannel', e);
@@ -82,7 +82,20 @@ const postContent = async (userID, channelID, content) => {
     const now = moment().format('YYYY-MM-DD HH:mm');
     const query = 'insert into `CHANNEL_CONTENTS` (`user_id`, `channel_id`, `time`, `content`) values (?, ?, ?, ?);';
     const params = [userID, channelID, now, content];
-    await connection.promise().query(query, params);
+    const [rows] = await connection.promise().query(query, params);
+    return rows;
+  } catch (e) {
+    console.log('util postContent', e);
+  }
+};
+
+const getContent = async (insertId) => {
+  try {
+    console.log(`get content in util insertId ${insertId}`);
+    const query = 'select * from `CHANNEL_CONTENTS` where id = ?;';
+    const param = [insertId];
+    const [rows] = await connection.promise().query(query, param);
+    return rows;
   } catch (e) {
     console.log('util postContent', e);
   }
@@ -96,4 +109,5 @@ module.exports = {
   addChannel,
   getChannelContents,
   postContent,
+  getContent,
 };
