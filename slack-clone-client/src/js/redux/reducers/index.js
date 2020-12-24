@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 import updateList from './updateList';
-import updateChannelID from './updateChannelID';
+import channelReducer from './channelReducer';
 
-export default combineReducers({ updateList, updateChannelID });
+export default combineReducers({ updateList, channelReducer });

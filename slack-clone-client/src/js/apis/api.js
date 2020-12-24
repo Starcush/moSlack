@@ -1,4 +1,5 @@
-const endpoint = 'http://localhost:4000/graphql';
+const endpoint = 'http://localhost:4000/';
+const storage = window.sessionStorage;
 
 const getQueryOption = (query) => ({
   method: 'POST',
@@ -44,6 +45,7 @@ export const googleLogin = (idToken) => {
   const query = `
     query {
       user(tokenId: "${idToken}") {
+        id
         name
         email
         profileImg
@@ -55,6 +57,8 @@ export const googleLogin = (idToken) => {
     .then((res) => res.json())
     .then(({ data }) => {
       const { user } = data;
+      storage.setItem('userID', user.id);
+      console.log('fetch google login');
       return user;
     })
     .catch((err) => {
@@ -77,10 +81,7 @@ export const addChannel = (channelName) => {
 
   return fetch(endpoint, getQueryOption(query))
     .then((res) => res.json())
-    .then(({ data }) => {
-      const { channelList } = data;
-      return channelList;
-    })
+    .then(({ data }) => data.addChannel)
     .catch((err) => {
       console.log(err);
     });

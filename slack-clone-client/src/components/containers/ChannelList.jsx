@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import {
   ChannelListContainer,
@@ -7,9 +9,10 @@ import {
   ToggleArrow,
   AddChannelBtn,
 } from '../views/StyledComponents';
-import Channels from './Channels';
+import Channels from './ChannelsLink';
 import AddChannelModal from './AddChannelModal';
 import getChannelList, { addChannel } from '../../js/apis/api';
+import { updateChannelList } from '../../js/redux/actions';
 
 const ChannelList = () => {
   const [isError, setIsError] = useState(false);
@@ -19,6 +22,7 @@ const ChannelList = () => {
 
   useEffect(() => {
     const fetchChannelList = async () => {
+      console.log('fetch channel list');
       setIsError(false);
       try {
         const data = await getChannelList();
@@ -29,7 +33,11 @@ const ChannelList = () => {
       }
     };
     fetchChannelList();
-  }, [channelList]);
+
+    return () => {
+      fetchChannelList();
+    };
+  }, []);
 
   return (
     <ChannelListContainer>
@@ -68,10 +76,18 @@ const ChannelList = () => {
       const data = await addChannel(name);
       setChannelList([...data]);
     } catch (e) {
-      console.log(e);
+      console.log('handelChannelName ', e);
     }
     handleClose();
   }
 };
 
-export default ChannelList;
+const mapStateToProps = (state) => ({
+  channelList: state.channelReducer.channelList,
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  updateChannelList,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);
