@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { Query } from '@apollo/client/react/components';
+import { gql } from '@apollo/client';
 
 import {
   ContentsListDiv,
@@ -11,31 +13,69 @@ import {
   ImgCol,
   ContentCol,
 } from '../views/StyledComponents';
-import { getChannelContents } from '../../js/apis/api';
+
+const CHAT_QUERY = gql`
+  query channelContents($channelId: Int!) {
+    channelContents(channelId: $channelId) {
+      id
+      user_id
+      channel_id
+      time
+      content
+    }
+  }
+`;
+
+const CHAT_SUBSCRIPTION = gql`
+  subscription chat($channelId: Int!){
+    chat(channelId: $channelId) {
+      id
+      user_id
+      channel_id
+      time
+      content
+    }
+  }
+`;
 
 const ChannelContentsList = (props) => {
-  // from redux
   const { channelID } = props;
 
-  const [channelList, setChannelList] = useState([]);
-
-  useEffect(() => {
-    const fetchChannelContents = async () => {
-      console.log('fetch channel contents');
-      try {
-        const data = await getChannelContents(channelID);
-        setChannelList([...data]);
-      } catch (e) {
-        console.log('fetch channel contents', e);
-      }
-    };
-
-    fetchChannelContents();
-  }, [channelID]);
+  let unsubscribe = null;
 
   return (
+    <Query query={CHAT_QUERY} variables={{ channelId: channelID }}>
+      {({ loading, data, subscribeToMore }) => {
+        if (loading) return null;
+
+        if (!unsubscribe) {
+          unsubscribe = subscribeToMore({
+            document: CHAT_SUBSCRIPTION,
+            variables: { channelId: channelID },
+            updateQuery: (prev, { subscriptionData }) => {
+              if (!subscriptionData.data) return prev;
+              const { chat } = subscriptionData.data;
+
+              const newContents = {
+                ...prev,
+                channelContents: [...prev.channelContents, ...chat],
+              };
+              return newContents;
+            },
+          });
+        }
+        return (<ContentsListView channelContents={data.channelContents} />);
+      }}
+    </Query>
+
+  );
+};
+
+const ContentsListView = (props) => {
+  const { channelContents } = props;
+  return (
     <ContentsListDiv>
-      {channelList.map((c) => (
+      {channelContents.map((c) => (
         <ChannelContentsDiv>
           <ImgCol>
             {/* <ProfileImgDiv>{c.img}</ProfileImgDiv> */}
@@ -53,7 +93,7 @@ const ChannelContentsList = (props) => {
 
 const mapStateToProps = (state) => ({
   list: state.updateList.list,
-  channelID: state.updateChannelID.channelID,
+  channelID: state.channelReducer.channelID,
 });
 
 export default connect(mapStateToProps)(ChannelContentsList);

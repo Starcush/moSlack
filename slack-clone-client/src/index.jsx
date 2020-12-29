@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
+import { ApolloProvider } from '@apollo/client';
+import client from './apolloClient';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -21,12 +23,14 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={{ backgroundColor: '#4A154B' }}>
-        <App />
-        <GlobalStyle />
-      </ThemeProvider>
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <ThemeProvider theme={{ backgroundColor: '#4A154B' }}>
+          <App />
+          <GlobalStyle />
+        </ThemeProvider>
+      </Provider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

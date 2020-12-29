@@ -15,7 +15,7 @@ const getQueryOption = (query) => ({
  * @param: none
  * @return: 채널 목록
  */
-const getChannelList = () => {
+export const getChannelList = () => {
   const query = `
     query {
       channelList {
@@ -114,13 +114,26 @@ export const getChannelContents = (channelId) => {
     });
 };
 
-export const postContent = (userID, channelID, content) => {
+export const postContent = (channelID, content) => {
+  const userID = storage.getItem('userID');
   const query = `
     mutation {
-      postContent(userID: ${userID}, channelID: ${channelID} , content: ${content})
+      postContent(userID: ${userID}, channelID: ${channelID} , content: "${content}") {
+        id
+        user_id
+        channel_id
+        time
+        content
+      }
     }
-    
   `;
+
+  return fetch(endpoint, getQueryOption(query))
+    .then((res) => res.json())
+    .then(({ data }) => data.postContent)
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export default getChannelList;

@@ -85,6 +85,7 @@ const resolvers = {
      */
     addChannel: async (_, { name }) => {
       try {
+        console.log('name in resolvers', name);
         await addChannel(name);
         const result = await getChannelList();
         return result;
@@ -110,7 +111,7 @@ const resolvers = {
   Subscription: {
     chat: {
       subscribe: (_, __, { pubsub }) => {
-        console.log('subscription');
+        console.log('chatting subscribtion');
         return pubsub.asyncIterator(PUBSUB_CONTENTS);
       },
     },
