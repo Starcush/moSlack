@@ -1,4 +1,5 @@
-const endpoint = 'http://localhost:4000/graphql';
+const endpoint = 'http://localhost:4000/';
+const storage = window.sessionStorage;
 
 const getQueryOption = (query) => ({
   method: 'POST',
@@ -14,7 +15,7 @@ const getQueryOption = (query) => ({
  * @param: none
  * @return: 채널 목록
  */
-const getChannelList = () => {
+export const getChannelList = () => {
   const query = `
     query {
       channelList {
@@ -44,6 +45,7 @@ export const googleLogin = (idToken) => {
   const query = `
     query {
       user(tokenId: "${idToken}") {
+        id
         name
         email
         profileImg
@@ -55,6 +57,8 @@ export const googleLogin = (idToken) => {
     .then((res) => res.json())
     .then(({ data }) => {
       const { user } = data;
+      storage.setItem('userID', user.id);
+      console.log('fetch google login');
       return user;
     })
     .catch((err) => {
@@ -77,15 +81,17 @@ export const addChannel = (channelName) => {
 
   return fetch(endpoint, getQueryOption(query))
     .then((res) => res.json())
-    .then(({ data }) => {
-      const { channelList } = data;
-      return channelList;
-    })
+    .then(({ data }) => data.addChannel)
     .catch((err) => {
       console.log(err);
     });
 };
 
+/**
+ * channel에 있는 모든 내용들을 불러온다
+ * @param {Int} channelId
+ * @returns [contents]
+ */
 export const getChannelContents = (channelId) => {
   const query = `query {
     channelContents(channelId: ${channelId}) {
@@ -103,6 +109,28 @@ export const getChannelContents = (channelId) => {
       const { channelContents } = data;
       return channelContents;
     })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const postContent = (channelID, content) => {
+  const userID = storage.getItem('userID');
+  const query = `
+    mutation {
+      postContent(userID: ${userID}, channelID: ${channelID} , content: "${content}") {
+        id
+        user_id
+        channel_id
+        time
+        content
+      }
+    }
+  `;
+
+  return fetch(endpoint, getQueryOption(query))
+    .then((res) => res.json())
+    .then(({ data }) => data.postContent)
     .catch((err) => {
       console.log(err);
     });

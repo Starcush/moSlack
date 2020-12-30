@@ -7,29 +7,26 @@ import {
   ToggleArrow,
   AddChannelBtn,
 } from '../views/StyledComponents';
-import Channels from './Channels';
+import Channels from './ChannelsLink';
 import AddChannelModal from './AddChannelModal';
-import getChannelList, { addChannel } from '../../js/apis/api';
+import { getChannelList } from '../../js/apis/api';
 
 const ChannelList = () => {
-  const [isError, setIsError] = useState(false);
   const [toggleClicked, setToggleClicked] = useState(false);
   const [show, setShow] = useState(false);
-  const [channelList, setChannelList] = useState([]);
+  const [channels, setChannels] = useState([]);
 
   useEffect(() => {
     const fetchChannelList = async () => {
-      setIsError(false);
       try {
-        const data = await getChannelList();
-        setChannelList([...data]);
+        const channelList = await getChannelList();
+        setChannels([...channelList]);
       } catch (e) {
-        setIsError(true);
         console.log(e);
       }
     };
     fetchChannelList();
-  }, [channelList]);
+  }, []);
 
   return (
     <ChannelListContainer>
@@ -38,15 +35,15 @@ const ChannelList = () => {
         <ChannelHead clicked={toggleClicked}>Channels</ChannelHead>
         <AddChannelBtn onClick={handleOpen} />
       </ChannelListHeader>
-      {toggleClicked && channelList.length > 0 ? (
-        <Channels channelList={channelList} />
+      {toggleClicked && channels.length > 0 ? (
+        <Channels channelList={channels} />
       ) : (
         <></>
       )}
       <AddChannelModal
         showModal={show}
         handleClose={handleClose}
-        handleChannelName={handleChannelName}
+        handleChannelList={setChannels}
       />
     </ChannelListContainer>
   );
@@ -61,16 +58,6 @@ const ChannelList = () => {
 
   function handleClose() {
     setShow(false);
-  }
-
-  async function handleChannelName(name) {
-    try {
-      const data = await addChannel(name);
-      setChannelList([...data]);
-    } catch (e) {
-      console.log(e);
-    }
-    handleClose();
   }
 };
 

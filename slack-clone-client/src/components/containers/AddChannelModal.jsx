@@ -9,8 +9,9 @@ import {
   ModalCreateBtn,
   ModalCancelBtn,
 } from '../views/StyledComponents';
+import { addChannel } from '../../js/apis/api';
 
-const AddChannelModal = ({ handleClose, showModal, handleChannelName }) => {
+const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
   const [channelName, setChannelName] = useState('');
 
   return (
@@ -39,6 +40,17 @@ const AddChannelModal = ({ handleClose, showModal, handleChannelName }) => {
 
   function handleChange(value) {
     setChannelName(value);
+  }
+
+  async function handleChannelName(name) {
+    try {
+      const result = await addChannel(name);
+      handleChannelList([...result]);
+    } catch (e) {
+      console.log('handelChannelName ', e);
+    }
+    handleClose();
+    setChannelName('');
   }
 };
 

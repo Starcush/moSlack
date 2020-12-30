@@ -1,4 +1,5 @@
 /* eslint-disable consistent-return */
+const moment = require('moment');
 const { connection } = require('./db');
 
 const checkUser = async (email) => {
@@ -54,7 +55,7 @@ const getChannelList = async () => {
 const addChannel = async (channelName) => {
   try {
     const query = 'insert into `CHANNELS` (`name`) values (?);';
-    const param = [channelName.name];
+    const param = [channelName];
     await connection.promise().query(query, param);
   } catch (e) {
     console.log('util addChannel', e);
@@ -73,6 +74,33 @@ const getChannelContents = async (channelId) => {
   }
 };
 
+const postContent = async (userID, channelID, content) => {
+  try {
+    console.log(
+      `post content in util userID ${userID} channelID ${channelID} content ${content}`,
+    );
+    const now = moment().format('YYYY-MM-DD HH:mm');
+    const query = 'insert into `CHANNEL_CONTENTS` (`user_id`, `channel_id`, `time`, `content`) values (?, ?, ?, ?);';
+    const params = [userID, channelID, now, content];
+    const [rows] = await connection.promise().query(query, params);
+    return rows;
+  } catch (e) {
+    console.log('util postContent', e);
+  }
+};
+
+const getContent = async (insertId) => {
+  try {
+    console.log(`get content in util insertId ${insertId}`);
+    const query = 'select * from `CHANNEL_CONTENTS` where id = ?;';
+    const param = [insertId];
+    const [rows] = await connection.promise().query(query, param);
+    return rows;
+  } catch (e) {
+    console.log('util postContent', e);
+  }
+};
+
 module.exports = {
   checkUser,
   insertUser,
@@ -80,4 +108,6 @@ module.exports = {
   getChannelList,
   addChannel,
   getChannelContents,
+  postContent,
+  getContent,
 };
