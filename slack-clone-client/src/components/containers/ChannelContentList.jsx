@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Query } from '@apollo/client/react/components';
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 
 import {
   ContentsListDiv,
@@ -40,42 +39,31 @@ const CHAT_SUBSCRIPTION = gql`
 
 const ChannelContentsList = (props) => {
   const { channelID } = props;
+  const { loading, data, subscribeToMore } = useQuery(CHAT_QUERY, {
+    variables: { channelId: channelID },
+  });
 
-  let unsubscribe = null;
+  useEffect(() => {
+    const unsubscribe = subscribeToMore({
+      document: CHAT_SUBSCRIPTION,
+      variables: { channelId: channelID },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) return prev;
+        const { chat } = subscriptionData.data;
+        const newContents = {
+          ...prev,
+          channelContents: [...prev.channelContents, ...chat],
+        };
+        return newContents;
+      },
+    });
 
-  return (
-    <Query query={CHAT_QUERY} variables={{ channelId: channelID }}>
-      {({ loading, data, subscribeToMore }) => {
-        if (loading) return null;
+    return () => unsubscribe();
+  }, [channelID, subscribeToMore]);
 
-        if (!unsubscribe) {
-          unsubscribe = subscribeToMore({
-            document: CHAT_SUBSCRIPTION,
-            variables: { channelId: channelID },
-            updateQuery: (prev, { subscriptionData }) => {
-              if (!subscriptionData.data) return prev;
-              const { chat } = subscriptionData.data;
-
-              const newContents = {
-                ...prev,
-                channelContents: [...prev.channelContents, ...chat],
-              };
-              return newContents;
-            },
-          });
-        }
-        return (<ContentsListView channelContents={data.channelContents} />);
-      }}
-    </Query>
-
-  );
-};
-
-const ContentsListView = (props) => {
-  const { channelContents } = props;
   return (
     <ContentsListDiv>
-      {channelContents.map((c) => (
+      {!loading && data.channelContents.map((c) => (
         <ChannelContentsDiv>
           <ImgCol>
             {/* <ProfileImgDiv>{c.img}</ProfileImgDiv> */}
