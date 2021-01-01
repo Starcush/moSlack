@@ -21,6 +21,8 @@ const CHAT_QUERY = gql`
       channel_id
       time
       content
+      name
+      profileImg
     }
   }
 `;
@@ -33,6 +35,8 @@ const CHAT_SUBSCRIPTION = gql`
       channel_id
       time
       content
+      name
+      profileImg
     }
   }
 `;
@@ -66,11 +70,11 @@ const ChannelContentsList = (props) => {
       {!loading && data.channelContents.map((c) => (
         <ChannelContentsDiv>
           <ImgCol>
-            {/* <ProfileImgDiv>{c.img}</ProfileImgDiv> */}
+            <ProfileImgDiv img={c.profileImg} />
           </ImgCol>
           <ContentCol>
-            {/* <UserDiv>{c.user}</UserDiv>
-            <Time dateTime={c.time} /> */}
+            <UserDiv>{c.name}</UserDiv>
+            <Time>{c.time}</Time>
             <ContentSection>{c.content}</ContentSection>
           </ContentCol>
         </ChannelContentsDiv>

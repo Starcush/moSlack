@@ -30,7 +30,7 @@ const insertUser = async (name, email, imageUrl) => {
   }
 };
 
-const getUserInfo = async (email) => {
+const getUserInfoByEmail = async (email) => {
   try {
     const query = 'select * from `USER` where `email` = ?;';
     const param = [email];
@@ -65,7 +65,7 @@ const addChannel = async (channelName) => {
 const getChannelContents = async (channelId) => {
   try {
     console.log(`query ${channelId} channel contents`);
-    const query = 'select * from `CHANNEL_CONTENTS` where channel_id = ?';
+    const query = 'select u.name, u.profileImg, c.* from `CHANNEL_CONTENTS` AS c JOIN `USER` AS u ON u.id = c.user_id AND c.channel_id = ?';
     const param = [channelId];
     const [rows] = await connection.promise().query(query, param);
     return rows;
@@ -92,7 +92,7 @@ const postContent = async (userID, channelID, content) => {
 const getContent = async (insertId) => {
   try {
     console.log(`get content in util insertId ${insertId}`);
-    const query = 'select * from `CHANNEL_CONTENTS` where id = ?;';
+    const query = 'select u.name, u.profileImg, c.* from `CHANNEL_CONTENTS` AS c JOIN `USER` AS u where c.id = ?;';
     const param = [insertId];
     const [rows] = await connection.promise().query(query, param);
     return rows;
@@ -104,7 +104,7 @@ const getContent = async (insertId) => {
 module.exports = {
   checkUser,
   insertUser,
-  getUserInfo,
+  getUserInfoByEmail,
   getChannelList,
   addChannel,
   getChannelContents,

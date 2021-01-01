@@ -100,6 +100,8 @@ export const getChannelContents = (channelId) => {
       channel_id
       time
       content
+      name
+      profileImg
     }
   }`;
 

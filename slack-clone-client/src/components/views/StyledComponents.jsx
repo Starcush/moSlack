@@ -106,11 +106,15 @@ export const WorkSpaceContainer = styled.div`
 `;
 
 export const WorkSpaceDiv = styled.div`
-  background-color: white;
+  background-color: ${style.lightPurple};;
   width: 37px;
   height: 37px;
   margin-top: 20px;
   border-radius: 5px;
+  text-align: center;
+  line-height: 37px;
+  font-weight: 800;
+  font-size: 20px;
 `;
 
 export const ChannelListContainer = styled.div`
@@ -234,24 +238,21 @@ export const ModalCreateBtn = styled(ModalBtn)`
 
 export const ModalCancelBtn = styled(ModalBtn)``;
 
-export const ChannelsLinkDiv = styled.div`
-  &:hover {
-    background-color: #350d36;
-  }
-`;
+export const ChannelsLinkDiv = styled.div``;
 
 export const ChannelsLink = styled.a`
   text-decoration: none;
   display: block;
   margin-block-start: 0em;
-  color: ${style.lightPurple};
-  margin-left: 35px;
-  padding: 0;
+  color: ${({ check }) => (check ? '#fff' : style.lightPurple)};
+  background-color: ${({ check }) => (check ? '#350d36' : 'none')};
+  padding: 1px 0 0 35px;
   margin-top: 0;
   cursor: pointer;
 
   &:hover {
     color: #fff;
+    background-color: #350d36;
   }
 `;
 
@@ -291,11 +292,17 @@ export const ContentCol = styled.div`
   flex: 25;
 `;
 
-export const ProfileImgDiv = styled.div``;
+export const ProfileImgDiv = styled.div`
+  background-image: ${({ img }) => `url(${img})`};
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-size: cover;
+`;
 
 export const UserDiv = styled.div``;
 
-export const Time = styled.time``;
+export const Time = styled.div``;
 
 export const ContentSection = styled.section``;
 

@@ -4,7 +4,9 @@ import { WorkSpaceContainer, WorkSpaceDiv } from '../views/StyledComponents';
 
 const WorkSpace = () => (
   <WorkSpaceContainer>
-    <WorkSpaceDiv />
+    <WorkSpaceDiv>
+      S
+    </WorkSpaceDiv>
   </WorkSpaceContainer>
 );
 
