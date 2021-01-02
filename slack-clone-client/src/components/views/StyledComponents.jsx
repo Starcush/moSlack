@@ -285,7 +285,7 @@ export const ChannelContentsDiv = styled.div`
 
 export const ImgCol = styled.div`
   flex: 1;
-  margin-right: 10px;
+  margin-right: 4px;
 `;
 
 export const ContentCol = styled.div`
@@ -300,11 +300,27 @@ export const ProfileImgDiv = styled.div`
   background-size: cover;
 `;
 
-export const UserDiv = styled.div``;
+export const ContentHeader = styled.div`
 
-export const Time = styled.div``;
+`;
 
-export const ContentSection = styled.section``;
+export const UserDiv = styled.div`
+  display: inline-block;
+  font-size: 21px;
+  font-weight: 800;
+`;
+
+export const Time = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  color: gray;
+  margin-left: 4px;
+  display: inline-block;
+`;
+
+export const ContentSection = styled.section`
+  margin-top: 5px;
+`;
 
 export const InsertContainer = styled.div`
   flex: 1;
