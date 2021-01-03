@@ -47,7 +47,7 @@ const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
       const result = await addChannel(name);
       handleChannelList([...result]);
     } catch (e) {
-      console.log('handelChannelName ', e);
+      throw new Error('handelChannelName ', e);
     }
     handleClose();
     setChannelName('');

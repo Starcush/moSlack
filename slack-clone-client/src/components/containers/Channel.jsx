@@ -43,15 +43,14 @@ const Channel = (props) => {
       const message = text;
       const { channelID } = p;
       setText(text);
-      const contentId = await postContent(channelID, message);
-      console.log('contentId ', contentId);
+      await postContent(channelID, message);
+
       // 여기서 전체 글에 추가시키는 함수가 포함되야 한다
       event.preventDefault();
-      // p.updateList(text);
       setText('');
       textAreaEl.current.focus();
     } catch (e) {
-      console.log('sendMessage UI ', e);
+      throw new Error('sendMessage UI ', e);
     }
   }
 
