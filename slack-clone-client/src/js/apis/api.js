@@ -32,7 +32,7 @@ export const getChannelList = () => {
       return channelList;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error('get channel list in client api', err);
     });
 };
 
@@ -58,11 +58,11 @@ export const googleLogin = (idToken) => {
     .then(({ data }) => {
       const { user } = data;
       storage.setItem('userID', user.id);
-      console.log('fetch google login');
+      // console.log('fetch google login');
       return user;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error('google login in client api', err);
     });
 };
 
@@ -83,7 +83,7 @@ export const addChannel = (channelName) => {
     .then((res) => res.json())
     .then(({ data }) => data.addChannel)
     .catch((err) => {
-      console.log(err);
+      throw new Error('add channel in client api', err);
     });
 };
 
@@ -112,7 +112,7 @@ export const getChannelContents = (channelId) => {
       return channelContents;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error('get channel contents in client api', err);
     });
 };
 
@@ -134,7 +134,7 @@ export const postContent = (channelID, content) => {
     .then((res) => res.json())
     .then(({ data }) => data.postContent)
     .catch((err) => {
-      console.log(err);
+      throw new Error('post content in client api', err);
     });
 };
 

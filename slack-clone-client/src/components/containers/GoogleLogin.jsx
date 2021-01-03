@@ -19,8 +19,7 @@ const GoogleLoginButton = () => {
   );
 
   async function responseGoogle(res) {
-    const result = await googleLogin(res.tokenId);
-    console.log(result);
+    await googleLogin(res.tokenId);
   }
 };
 

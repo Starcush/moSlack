@@ -35,7 +35,7 @@ const Option = () => {
           <FontAwesomeIcon
             icon={faArrowRight}
             style={{ color: arrowRight ? '#DEDEDE' : style.lightPurple }}
-            onClick={forwardSpace}
+            // onClick={forwardSpace}
           />
         </RightArrowDiv>
         <LeftArrowDiv
@@ -46,7 +46,7 @@ const Option = () => {
           <FontAwesomeIcon
             icon={faArrowLeft}
             style={{ color: arrowLeft ? '#DEDEDE' : style.lightPurple }}
-            onClick={backSpace}
+            // onClick={backSpace}
           />
         </LeftArrowDiv>
       </OptionArrowDiv>
@@ -61,13 +61,13 @@ const Option = () => {
     </OptionDiv>
   );
 
-  function backSpace() {
-    console.log('back space button');
-  }
+  // function backSpace() {
+  //   console.log('back space button');
+  // }
 
-  function forwardSpace() {
-    console.log('forward space button');
-  }
+  // function forwardSpace() {
+  //   console.log('forward space button');
+  // }
 
   function mouseEnterEventRight() {
     setArrowRight(!arrowRight);
@@ -78,7 +78,6 @@ const Option = () => {
   }
 
   function mouseLeaveEvent() {
-    console.log('mouse leave');
     if (arrowRight) setArrowRight(!arrowRight);
     if (arrowLeft) setArrowLeft(!arrowLeft);
   }
