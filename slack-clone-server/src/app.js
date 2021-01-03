@@ -20,6 +20,8 @@ const typeDefs = `
   type Contents {
     id: Int
     user_id: Int
+    name: String
+    profileImg: String
     channel_id: Int
     time: String
     content: String

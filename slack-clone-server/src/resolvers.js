@@ -7,7 +7,7 @@ const { PUBSUB_CONTENTS } = require('./constants');
 const {
   checkUser,
   insertUser,
-  getUserInfo,
+  getUserInfoByEmail,
   getChannelList,
   addChannel,
   getChannelContents,
@@ -40,7 +40,7 @@ const resolvers = {
           await insertUser(name, email, picture);
         }
 
-        const [rows] = await getUserInfo(email);
+        const [rows] = await getUserInfoByEmail(email);
         return rows;
       } catch (e) {
         console.log(e);

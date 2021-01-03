@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -15,6 +15,7 @@ import { updateList } from '../../js/redux/actions';
 import { postContent } from '../../js/apis/api';
 
 const Channel = (props) => {
+  const textAreaEl = useRef(null);
   const [text, setText] = useState('');
 
   return (
@@ -26,6 +27,8 @@ const Channel = (props) => {
             placeholder="내용을 입력해주세요."
             value={text}
             onChange={(e) => handleChange(e.target.value)}
+            ref={textAreaEl}
+            onKeyDown={(e) => handleKeyDown(e, props)}
           />
           <ButtonDiv>
             <InputButton onClick={(e) => sendMessage(e, props)} />
@@ -46,6 +49,7 @@ const Channel = (props) => {
       event.preventDefault();
       // p.updateList(text);
       setText('');
+      textAreaEl.current.focus();
     } catch (e) {
       console.log('sendMessage UI ', e);
     }
@@ -53,6 +57,18 @@ const Channel = (props) => {
 
   function handleChange(value) {
     setText(value);
+  }
+
+  // enter를 누르면 입력이 완료 되고, shift+enter를 통해서 줄바꿈이 되도록
+  function handleKeyDown(e, p) {
+    const keyCode = e.which || e.keyCode;
+
+    if (keyCode === 13) {
+      if (!e.shiftKey) {
+        e.preventDefault();
+        sendMessage(e, p);
+      }
+    }
   }
 };
 
