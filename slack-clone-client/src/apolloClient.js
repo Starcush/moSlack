@@ -3,13 +3,16 @@ import {
 } from '@apollo/client';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4000/',
+  uri: 'http://15.164.58.98:4000/',
 });
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:4000/',
+  uri: 'ws://15.164.58.98:4000/',
   options: {
     reconnect: true,
   },

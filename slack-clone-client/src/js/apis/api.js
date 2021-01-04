@@ -1,4 +1,9 @@
-const endpoint = 'http://localhost:4000/';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// const endpoint = 'http://localhost:4000/';
+const endpoint = 'http://15.164.58.98:4000/';
 const storage = window.sessionStorage;
 
 const getQueryOption = (query) => ({
