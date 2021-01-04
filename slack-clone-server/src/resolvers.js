@@ -2,7 +2,7 @@
 const { OAuth2Client } = require('google-auth-library');
 const dotenv = require('dotenv');
 
-const { PUBSUB_CONTENTS } = require('./constants');
+const { PUBSUB_CONTENTS, PUBSUB_CHANNEL_LIST } = require('./constants');
 
 const {
   checkUser,
@@ -83,11 +83,15 @@ const resolvers = {
      * @param {string} channelName 입력한 채널 이름
      * @returns 추가한 후 채널 목록
      */
-    addChannel: async (_, { name }) => {
+    addChannel: async (_, { name }, { pubsub }) => {
       try {
         console.log('name in resolvers', name);
         await addChannel(name);
         const result = await getChannelList();
+        console.log(result);
+        pubsub.publish(PUBSUB_CHANNEL_LIST, {
+          channelSubscription: result,
+        });
         return result;
       } catch (e) {
         console.log('graphql resolver addChannel', e);
@@ -113,6 +117,12 @@ const resolvers = {
       subscribe: (_, __, { pubsub }) => {
         console.log('chatting subscribtion');
         return pubsub.asyncIterator(PUBSUB_CONTENTS);
+      },
+    },
+    channelSubscription: {
+      subscribe: (_, __, { pubsub }) => {
+        console.log('channel subscription');
+        return pubsub.asyncIterator(PUBSUB_CHANNEL_LIST);
       },
     },
   },

@@ -41,6 +41,7 @@ const typeDefs = `
 
   type Subscription {
     chat(channelId: Int!): [Contents]
+    channelSubscription: [Channel]
   }
 `;
 
