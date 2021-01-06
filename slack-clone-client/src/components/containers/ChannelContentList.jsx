@@ -69,25 +69,30 @@ const ChannelContentsList = (props) => {
 
   return (
     <ContentsListDiv>
-      {!loading && data.channelContents.map((c) => (
-        <ChannelContentsDiv>
-          <ImgCol>
-            <ProfileImgDiv img={c.profileImg} />
-          </ImgCol>
-          <ContentCol>
-            <ContentHeader>
-              <UserDiv>{c.name}</UserDiv>
-              <Time>{timeFormatting(c.time)}</Time>
-            </ContentHeader>
-            <ContentSection>{c.content}</ContentSection>
-          </ContentCol>
-        </ChannelContentsDiv>
-      ))}
+      {!loading && data.channelContents.map((c) => {
+        if (c.channel_id !== channelID) {
+          return <></>;
+        }
+        return (
+          <ChannelContentsDiv>
+            <ImgCol>
+              <ProfileImgDiv img={c.profileImg} />
+            </ImgCol>
+            <ContentCol>
+              <ContentHeader>
+                <UserDiv>{c.name}</UserDiv>
+                <Time>{timeFormatting(c.time)}</Time>
+              </ContentHeader>
+              <ContentSection>{c.content}</ContentSection>
+            </ContentCol>
+          </ChannelContentsDiv>
+        );
+      })}
     </ContentsListDiv>
   );
 
   function timeFormatting(time) {
-    const newFormat = moment(Date(time)).format('LLL');
+    const newFormat = moment(time).format('LLL');
     const timeArr = newFormat.split(' ');
     // ["January", "2,", "2021", "6:23", "PM"]
     const months = [
