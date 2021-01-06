@@ -7,12 +7,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const endpoint = process.env.REACT_APP_ENDPOINT;
+
 const httpLink = new HttpLink({
-  uri: 'http://15.164.58.98:4000/',
+  uri: `http://${endpoint}`,
 });
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://15.164.58.98:4000/',
+  uri: `ws://${endpoint}`,
   options: {
     reconnect: true,
   },

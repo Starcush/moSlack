@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const typeDefs = `
+  scalar Date
+
   type User {
     id: Int
     name: String
@@ -23,7 +25,7 @@ const typeDefs = `
     name: String
     profileImg: String
     channel_id: Int
-    time: String
+    time: Date
     content: String
   }
 
@@ -49,6 +51,15 @@ const { resolvers } = require('./resolvers');
 
 const pubsub = new PubSub();
 const server = new GraphQLServer({ typeDefs, resolvers, context: { pubsub } });
+// eslint-disable-next-line no-underscore-dangle
+Object.assign(server.executableSchema._typeMap.Date, {
+  name: 'Date',
+  description: 'Date Type',
+  serialize: (value) => {
+    const date = new Date(value);
+    return date;
+  },
+});
 
 server.start(({ port }) => {
   console.log(`listening at http://localhost:${port}`);

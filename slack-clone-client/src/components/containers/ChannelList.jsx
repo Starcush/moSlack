@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { gql, useQuery } from '@apollo/client';
 
 import {
   ChannelListContainer,
@@ -9,24 +10,21 @@ import {
 } from '../views/StyledComponents';
 import Channels from './ChannelsLink';
 import AddChannelModal from './AddChannelModal';
-import { getChannelList } from '../../js/apis/api';
+
+const CHANNEL_QUERY = gql`
+  query channelList {
+    channelList {
+      id
+      name
+    }
+  }
+`;
 
 const ChannelList = () => {
   const [toggleClicked, setToggleClicked] = useState(false);
   const [show, setShow] = useState(false);
-  const [channels, setChannels] = useState([]);
 
-  useEffect(() => {
-    const fetchChannelList = async () => {
-      try {
-        const channelList = await getChannelList();
-        setChannels([...channelList]);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchChannelList();
-  }, []);
+  const { loading, data } = useQuery(CHANNEL_QUERY);
 
   return (
     <ChannelListContainer>
@@ -35,15 +33,14 @@ const ChannelList = () => {
         <ChannelHead clicked={toggleClicked}>Channels</ChannelHead>
         <AddChannelBtn onClick={handleOpen} />
       </ChannelListHeader>
-      {toggleClicked && channels.length > 0 ? (
-        <Channels channelList={channels} />
+      {toggleClicked && !loading && data.channelList.length > 0 ? (
+        <Channels />
       ) : (
         <></>
       )}
       <AddChannelModal
         showModal={show}
         handleClose={handleClose}
-        handleChannelList={setChannels}
       />
     </ChannelListContainer>
   );
