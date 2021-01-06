@@ -25,3 +25,5 @@ yarn-error.log*
 # personal
 checklist.md
 .env
+.env.development
+.env.production

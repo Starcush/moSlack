@@ -2,8 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// const endpoint = 'http://localhost:4000/';
-const endpoint = 'http://15.164.58.98:4000/';
+const endpoint = `http://${process.env.REACT_APP_ENDPOINT}`;
 const storage = window.sessionStorage;
 
 const getQueryOption = (query) => ({
