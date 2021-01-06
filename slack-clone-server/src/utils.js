@@ -92,7 +92,7 @@ const postContent = async (userID, channelID, content) => {
 const getContent = async (insertId) => {
   try {
     console.log(`get content in util insertId ${insertId}`);
-    const query = 'select u.name, u.profileImg, c.* from `CHANNEL_CONTENTS` AS c JOIN `USER` AS u where c.id = ?;';
+    const query = 'select u.name, u.profileImg, c.* from `CHANNEL_CONTENTS` AS c JOIN `USER` AS u ON u.id = c.user_id AND c.id = ?;';
     const param = [insertId];
     const [rows] = await connection.promise().query(query, param);
     return rows;
