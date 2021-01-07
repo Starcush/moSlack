@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import {
   ModalHeader,
@@ -12,7 +12,12 @@ import {
 import { addChannel } from '../../js/apis/api';
 
 const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
+  const inputEl = useRef(null);
   const [channelName, setChannelName] = useState('');
+
+  useEffect(() => {
+    inputEl.current.focus();
+  }, [showModal]);
 
   return (
     <ChannelModal modal={showModal}>
@@ -22,6 +27,7 @@ const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
           type="text"
           placeholder="# name"
           onChange={(e) => handleChange(e.target.value)}
+          ref={inputEl}
         />
         <ModalBtnDiv>
           <ModalCreateBtn
@@ -30,7 +36,7 @@ const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
           >
             Create
           </ModalCreateBtn>
-          <ModalCancelBtn type="button" onClick={handleClose}>
+          <ModalCancelBtn type="button" onClick={reset}>
             Cancel
           </ModalCancelBtn>
         </ModalBtnDiv>
@@ -42,15 +48,20 @@ const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
     setChannelName(value);
   }
 
+  function reset() {
+    handleClose();
+    setChannelName('');
+    inputEl.current.value = '';
+  }
+
   async function handleChannelName(name) {
     try {
       const result = await addChannel(name);
       handleChannelList([...result]);
+      reset();
     } catch (e) {
       throw new Error('handelChannelName ', e);
     }
-    handleClose();
-    setChannelName('');
   }
 };
 

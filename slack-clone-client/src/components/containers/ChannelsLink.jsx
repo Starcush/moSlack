@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { gql, useQuery } from '@apollo/client';
 
 import { updateChannelID } from '../../js/redux/actions';
-import { ChannelsLinkDiv, ChannelsLink } from '../views/StyledComponents';
+import { ChannelsLinkDiv, ChannelsLink, MoreBtn } from '../views/StyledComponents';
 
 const CHANNEL_QUERY = gql`
   query channelList {
@@ -48,7 +48,14 @@ const Channels = (props) => {
     <>
       {!loading && data.channelList.map((el) => (
         <ChannelsLinkDiv>
-          <ChannelsLink key={el.id} check={(clickedChannel === el.id)} onClick={() => handleClickChannelID(el.id)}>{`# ${el.name}`}</ChannelsLink>
+          <ChannelsLink
+            key={el.id}
+            check={(clickedChannel === el.id)}
+            onClick={() => handleClickChannelID(el.id)}
+          >
+            {`# ${el.name}`}
+            {/* <MoreBtn check={(clickedChannel === el.id)} /> */}
+          </ChannelsLink>
         </ChannelsLinkDiv>
       ))}
     </>

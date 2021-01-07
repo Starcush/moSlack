@@ -122,6 +122,7 @@ export const getChannelContents = (channelId) => {
 
 export const postContent = (channelID, content) => {
   const userID = storage.getItem('userID');
+  if (!userID) return false;
   const query = `
     mutation {
       postContent(userID: ${userID}, channelID: ${channelID} , content: "${content}") {

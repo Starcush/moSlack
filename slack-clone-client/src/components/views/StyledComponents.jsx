@@ -1,6 +1,8 @@
 import styled, { keyframes } from 'styled-components';
-import { CaretRight, Plus, User } from '@styled-icons/fa-solid';
+import { CaretRight, Plus } from '@styled-icons/fa-solid';
 import { Send } from '@styled-icons/material-rounded';
+import { MoreHoriz } from '@styled-icons/material';
+import GoogleIcon from '../../google.png';
 
 import style from './styledVariables';
 
@@ -86,8 +88,8 @@ export const ProfileDiv = styled.div`
   align-items: center;
 `;
 
-export const UserIcon = styled(User)`
-  color: #0074d9;
+export const UserIcon = styled.div`
+  content: url(${GoogleIcon});
   width: 18px;
   height: 18px;
   z-index: 3;
@@ -238,11 +240,17 @@ export const ModalCreateBtn = styled(ModalBtn)`
 
 export const ModalCancelBtn = styled(ModalBtn)``;
 
-export const ChannelsLinkDiv = styled.div``;
+export const ChannelsLinkDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
 
 export const ChannelsLink = styled.a`
+  width: 100%;
   text-decoration: none;
-  display: block;
+  display: flex;
+  justify-content: space-between;
   margin-block-start: 0em;
   color: ${({ check }) => (check ? '#fff' : style.lightPurple)};
   background-color: ${({ check }) => (check ? '#350d36' : 'none')};
@@ -271,6 +279,15 @@ export const ContentsListDiv = styled.div`
   flex: 30;
   overflow-y: scroll;
   height: calc((85vh - 20px) * (39 / 41));
+`;
+
+export const MoreBtn = styled(MoreHoriz)`
+  display: ${({ check }) => (check ? 'inline' : 'none')};
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  padding-top: 5px;
+  margin-right: 15px;
 `;
 
 export const ChannelContentsDiv = styled.div`
