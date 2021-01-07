@@ -13,10 +13,12 @@ import {
 import ChannelContentsList from './ChannelContentList';
 import { updateList } from '../../js/redux/actions';
 import { postContent } from '../../js/apis/api';
+import LoginErrorModal from './LoginErrorModal';
 
 const Channel = (props) => {
   const textAreaEl = useRef(null);
   const [text, setText] = useState('');
+  const [show, setShow] = useState(false);
 
   return (
     <ChannelContainer>
@@ -35,6 +37,7 @@ const Channel = (props) => {
           </ButtonDiv>
         </InputDiv>
       </InsertContainer>
+      <LoginErrorModal showModal={show} setShow={setShow} />
     </ChannelContainer>
   );
 
@@ -43,12 +46,16 @@ const Channel = (props) => {
       const message = text;
       const { channelID } = p;
       setText(text);
-      await postContent(channelID, message);
+      const result = await postContent(channelID, message);
 
-      // 여기서 전체 글에 추가시키는 함수가 포함되야 한다
-      event.preventDefault();
-      setText('');
-      textAreaEl.current.focus();
+      if (result) {
+        // 여기서 전체 글에 추가시키는 함수가 포함되야 한다
+        event.preventDefault();
+        setText('');
+        textAreaEl.current.focus();
+      } else {
+        setShow(true);
+      }
     } catch (e) {
       throw new Error('sendMessage UI ', e);
     }
