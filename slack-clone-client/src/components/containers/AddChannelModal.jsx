@@ -11,7 +11,7 @@ import {
 } from '../views/StyledComponents';
 import { addChannel } from '../../js/apis/api';
 
-const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
+const AddChannelModal = ({ handleClose, showModal }) => {
   const inputEl = useRef(null);
   const [channelName, setChannelName] = useState('');
 
@@ -56,8 +56,7 @@ const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
 
   async function handleChannelName(name) {
     try {
-      const result = await addChannel(name);
-      handleChannelList([...result]);
+      await addChannel(name);
       reset();
     } catch (e) {
       throw new Error('handelChannelName ', e);
