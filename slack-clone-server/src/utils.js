@@ -65,7 +65,7 @@ const addChannel = async (channelName) => {
 const getChannelContents = async (channelId) => {
   try {
     console.log(`query ${channelId} channel contents`);
-    const query = 'select u.name, u.profileImg, c.* from `CHANNEL_CONTENTS` AS c JOIN `USER` AS u ON u.id = c.user_id AND c.channel_id = ?';
+    const query = 'select u.name, u.profileImg, c.* from `CHANNEL_CONTENTS` AS c JOIN `USER` AS u ON u.id = c.user_id AND c.channel_id = ? ORDER BY c.time ASC';
     const param = [channelId];
     const [rows] = await connection.promise().query(query, param);
     return rows;
