@@ -12,7 +12,7 @@ import {
 } from '../views/StyledComponents';
 import { MUTATION_CHANNEL_ADD } from '../../js/apis/query';
 
-const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
+const AddChannelModal = ({ handleClose, showModal }) => {
   const inputEl = useRef(null);
   const [channelName, setChannelName] = useState('');
 
