@@ -8,10 +8,10 @@ React와 GraphQL를 중심으로 학습하기 위해 업무용 메신저로 사�
 
 #### v1.0
 
-- [ ] Google Social Login<br>
-- [ ] 채널 목록을 실시간으로 추가<br>
-- [ ] 실시간 채팅 기능<br>
-- [ ] 채팅에서 표시될 사용자 정보는 google에서 가져온 정보 사용하기<br>
+- [x] Google Social Login<br>
+- [x] 채널 목록을 실시간으로 추가<br>
+- [x] 실시간 채팅 기능<br>
+- [x] 채팅에서 표시될 사용자 정보는 google에서 가져온 정보 사용하기<br>
 
 ---
 
@@ -26,11 +26,11 @@ React와 GraphQL를 중심으로 학습하기 위해 업무용 메신저로 사�
 
 ### 2. 학습 목표
 
-- [ ] React, Styled-Component를 활용한 UI 구성<br>
-- [ ] Redux를 적용한 상태관리<br>
-- [ ] Rest API 대신 GraphQL을 사용한 api 작성<br>
-- [ ] ~~Socket.io를 사용해서 채팅 구현하기~~ Socketio 대신 GraphQL의 Subscription을 사용<br>
-- [ ] OAuth2.0을 기반으로 한 구글 소셜 로그인 적용<br>
+- [x] React, Styled-Component를 활용한 UI 구성<br>
+- [x] Redux를 적용한 상태관리<br>
+- [x] Rest API 대신 GraphQL을 사용한 api 작성<br>
+- [x] ~~Socket.io를 사용해서 채팅 구현하기~~ Socketio 대신 GraphQL의 Subscription을 사용<br>
+- [x] OAuth2.0을 기반으로 한 구글 소셜 로그인 적용<br>
 - [ ] client에서 Apollo-Client 적용<br>
 - [ ] React-Router 적용<br>
 
