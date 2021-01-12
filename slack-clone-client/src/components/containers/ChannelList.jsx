@@ -10,21 +10,13 @@ import {
 } from '../views/StyledComponents';
 import Channels from './ChannelsLink';
 import AddChannelModal from './AddChannelModal';
-
-const CHANNEL_QUERY = gql`
-  query channelList {
-    channelList {
-      id
-      name
-    }
-  }
-`;
+import { QUERY_CHANNEL } from '../../js/apis/query';
 
 const ChannelList = () => {
   const [toggleClicked, setToggleClicked] = useState(false);
   const [show, setShow] = useState(false);
 
-  const { loading, data } = useQuery(CHANNEL_QUERY);
+  const { loading, data } = useQuery(QUERY_CHANNEL);
 
   return (
     <ChannelListContainer>

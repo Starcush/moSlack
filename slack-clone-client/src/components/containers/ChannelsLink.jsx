@@ -5,32 +5,15 @@ import { gql, useQuery } from '@apollo/client';
 
 import { updateChannelID } from '../../js/redux/actions';
 import { ChannelsLinkDiv, ChannelsLink, MoreBtn } from '../views/StyledComponents';
-
-const CHANNEL_QUERY = gql`
-  query channelList {
-    channelList {
-      id
-      name
-    }
-  }
-`;
-
-const CHANNEL_SUBSCRIPTION = gql`
-  subscription channelSubscription {
-    channelSubscription {
-      id
-      name
-    }
-  }
-`;
+import { QUERY_CHANNEL, SUBSCRIPTION_CHANNEL } from '../../js/apis/query';
 
 const Channels = (props) => {
   const [clickedChannel, setClickedChannel] = useState(1);
-  const { loading, data, subscribeToMore } = useQuery(CHANNEL_QUERY);
+  const { loading, data, subscribeToMore } = useQuery(QUERY_CHANNEL);
 
   useEffect(() => {
     const unsubscribe = subscribeToMore({
-      document: CHANNEL_SUBSCRIPTION,
+      document: SUBSCRIPTION_CHANNEL,
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) return prev;
         const { channelSubscription } = subscriptionData.data;

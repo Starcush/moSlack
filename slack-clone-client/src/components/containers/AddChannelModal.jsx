@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useMutation } from '@apollo/client';
 
 import {
   ModalHeader,
@@ -9,11 +10,13 @@ import {
   ModalCreateBtn,
   ModalCancelBtn,
 } from '../views/StyledComponents';
-import { addChannel } from '../../js/apis/api';
+import { MUTATION_CHANNEL_ADD } from '../../js/apis/query';
 
 const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
   const inputEl = useRef(null);
   const [channelName, setChannelName] = useState('');
+
+  const [addChannel] = useMutation(MUTATION_CHANNEL_ADD);
 
   useEffect(() => {
     inputEl.current.focus();
@@ -32,7 +35,7 @@ const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
         <ModalBtnDiv>
           <ModalCreateBtn
             type="button"
-            onClick={() => handleChannelName(channelName)}
+            onClick={(e) => handleChannelName(e, channelName)}
           >
             Create
           </ModalCreateBtn>
@@ -54,14 +57,12 @@ const AddChannelModal = ({ handleClose, showModal, handleChannelList }) => {
     inputEl.current.value = '';
   }
 
-  async function handleChannelName(name) {
-    try {
-      const result = await addChannel(name);
-      handleChannelList([...result]);
-      reset();
-    } catch (e) {
-      throw new Error('handelChannelName ', e);
-    }
+  function handleChannelName(e, name) {
+    e.preventDefault();
+    addChannel({
+      variables: { name },
+    });
+    reset();
   }
 };
 
