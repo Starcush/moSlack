@@ -14,44 +14,17 @@ import {
   ImgCol,
   ContentCol,
 } from '../views/StyledComponents';
-
-const CHAT_QUERY = gql`
-  query channelContents($channelId: Int!) {
-    channelContents(channelId: $channelId) {
-      id
-      user_id
-      channel_id
-      time
-      content
-      name
-      profileImg
-    }
-  }
-`;
-
-const CHAT_SUBSCRIPTION = gql`
-  subscription chat($channelId: Int!){
-    chat(channelId: $channelId) {
-      id
-      user_id
-      channel_id
-      time
-      content
-      name
-      profileImg
-    }
-  }
-`;
+import { QUERY_CHAT, SUBSCRIPTION_CHAT } from '../../js/apis/query';
 
 const ChannelContentsList = (props) => {
   const { channelID } = props;
-  const { loading, data, subscribeToMore } = useQuery(CHAT_QUERY, {
+  const { loading, data, subscribeToMore } = useQuery(QUERY_CHAT, {
     variables: { channelId: channelID },
   });
 
   useEffect(() => {
     const unsubscribe = subscribeToMore({
-      document: CHAT_SUBSCRIPTION,
+      document: SUBSCRIPTION_CHAT,
       variables: { channelId: channelID },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) return prev;
