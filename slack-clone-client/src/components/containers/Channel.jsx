@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useMutation } from '@apollo/client';
 
 import {
   ChannelContainer,
@@ -12,13 +13,15 @@ import {
 } from '../views/StyledComponents';
 import ChannelContentsList from './ChannelContentList';
 import { updateList } from '../../js/redux/actions';
-import { postContent } from '../../js/apis/api';
+import { MUTATION_CONTENTS_ADD } from '../../js/apis/query';
 import LoginErrorModal from './LoginErrorModal';
 
 const Channel = (props) => {
   const textAreaEl = useRef(null);
   const [text, setText] = useState('');
   const [show, setShow] = useState(false);
+
+  const [postContent] = useMutation(MUTATION_CONTENTS_ADD);
 
   return (
     <ChannelContainer>
@@ -41,24 +44,18 @@ const Channel = (props) => {
     </ChannelContainer>
   );
 
-  async function sendMessage(event, p) {
-    try {
-      const message = text;
-      const { channelID } = p;
-      setText(text);
-      const result = await postContent(channelID, message);
+  function sendMessage(event, p) {
+    const { channelID } = p;
+    const userID = Number(window.sessionStorage.getItem('userID'));
 
-      if (result) {
-        // 여기서 전체 글에 추가시키는 함수가 포함되야 한다
-        event.preventDefault();
-        setText('');
-        textAreaEl.current.focus();
-      } else {
-        setShow(true);
-      }
-    } catch (e) {
-      throw new Error('sendMessage UI ', e);
-    }
+    if (!userID) setShow(true);
+
+    event.preventDefault();
+    postContent({
+      variables: { userID, channelID, content: text },
+    });
+    setText('');
+    textAreaEl.current.focus();
   }
 
   function handleChange(value) {
