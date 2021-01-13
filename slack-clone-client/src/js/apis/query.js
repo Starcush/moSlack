@@ -24,7 +24,7 @@ export const QUERY_CHAT = gql`
   }
 `;
 
-export const QUERY_USER = `
+export const QUERY_USER = gql`
     query user($tokenId: String!){
       user(tokenId: $tokenId) {
         id
