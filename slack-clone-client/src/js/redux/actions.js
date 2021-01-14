@@ -8,10 +8,10 @@ export const updateList = (text) => ({
   },
 });
 
-export const updateChannelID = (channelID) => ({
-  type: type.UPDATE_CHANNELID,
+export const updateCurChannel = (channel) => ({
+  type: type.UPDATE_CURCHANNEL,
   payload: {
-    channelID,
+    channel,
   },
 });
 

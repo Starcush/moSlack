@@ -253,14 +253,14 @@ export const ChannelsLink = styled.a`
   justify-content: space-between;
   margin-block-start: 0em;
   color: ${({ check }) => (check ? '#fff' : style.lightPurple)};
-  background-color: ${({ check }) => (check ? '#350d36' : 'none')};
+  background-color: ${({ check }) => (check ? '#1164a3' : 'none')};
   padding: 1px 0 0 35px;
   margin-top: 0;
   cursor: pointer;
 
   &:hover {
     color: #fff;
-    background-color: #350d36;
+    background-color: ${({ check }) => (check ? '#1164a3' : '#350d36')};
   }
 `;
 

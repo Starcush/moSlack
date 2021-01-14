@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { gql, useQuery } from '@apollo/client';
 
-import { updateChannelID } from '../../js/redux/actions';
+import { updateCurChannel } from '../../js/redux/actions';
 import { ChannelsLinkDiv, ChannelsLink, MoreBtn } from '../views/StyledComponents';
 import { QUERY_CHANNEL, SUBSCRIPTION_CHANNEL } from '../../js/apis/query';
 
@@ -34,25 +34,25 @@ const Channels = (props) => {
           <ChannelsLink
             key={el.id}
             check={(clickedChannel === el.id)}
-            onClick={() => handleClickChannelID(el.id)}
+            onClick={() => handleClickChannel(el.id, el.name)}
           >
             {`# ${el.name}`}
-            {/* <MoreBtn check={(clickedChannel === el.id)} /> */}
           </ChannelsLink>
         </ChannelsLinkDiv>
       ))}
     </>
   );
 
-  function handleClickChannelID(id) {
-    props.updateChannelID(id);
+  function handleClickChannel(id, name) {
+    const channel = { id, name };
+    props.updateCurChannel(channel);
     setClickedChannel(id);
   }
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    updateChannelID,
+    updateCurChannel,
   }, dispatch);
 }
 

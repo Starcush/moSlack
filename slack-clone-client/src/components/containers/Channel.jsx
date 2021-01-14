@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useMutation } from '@apollo/client';
@@ -15,6 +15,7 @@ import ChannelContentsList from './ChannelContentList';
 import { updateList } from '../../js/redux/actions';
 import { MUTATION_CONTENTS_ADD } from '../../js/apis/query';
 import LoginErrorModal from './LoginErrorModal';
+import ChannelHeader from '../views/ChannelHeader';
 
 const Channel = (props) => {
   const textAreaEl = useRef(null);
@@ -25,6 +26,7 @@ const Channel = (props) => {
 
   return (
     <ChannelContainer>
+      {/* <ChannelHeader /> */}
       <ChannelContentsList />
       <InsertContainer>
         <InputDiv>

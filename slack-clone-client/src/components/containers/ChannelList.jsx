@@ -13,7 +13,7 @@ import AddChannelModal from './AddChannelModal';
 import { QUERY_CHANNEL } from '../../js/apis/query';
 
 const ChannelList = () => {
-  const [toggleClicked, setToggleClicked] = useState(false);
+  const [toggleClicked, setToggleClicked] = useState(true);
   const [show, setShow] = useState(false);
 
   const { loading, data } = useQuery(QUERY_CHANNEL);
