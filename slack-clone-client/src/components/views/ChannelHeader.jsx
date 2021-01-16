@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { InformationCircle } from '@styled-icons/heroicons-outline';
 
-const ChannelHeader = () => {
-  const test = 1;
+const ChannelHeader = (props) => {
+  const { curChannel } = props;
   return (
     <HeaderContainer>
       <HeaderDiv>
-        <ContentsContainer />
+        <ContentsContainer>
+          {curChannel.name}
+        </ContentsContainer>
         <IconContainer>
           <InformationIcon />
         </IconContainer>

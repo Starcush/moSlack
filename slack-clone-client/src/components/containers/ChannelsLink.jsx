@@ -1,59 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { gql, useQuery } from '@apollo/client';
+import React from 'react';
 
-import { updateCurChannel } from '../../js/redux/actions';
-import { ChannelsLinkDiv, ChannelsLink, MoreBtn } from '../views/StyledComponents';
-import { QUERY_CHANNEL, SUBSCRIPTION_CHANNEL } from '../../js/apis/query';
+import { ChannelsLinkDiv, ChannelsLink } from '../views/StyledComponents';
 
-const Channels = (props) => {
-  const [clickedChannel, setClickedChannel] = useState(1);
-  const { loading, data, subscribeToMore } = useQuery(QUERY_CHANNEL);
+const Channels = (props) => (
+  <>
+    {props.channelList.map((el) => (
+      <ChannelsLinkDiv>
+        <ChannelsLink
+          key={el.id}
+          check={(props.curChannelId === el.id)}
+          onClick={() => props.handleCurChannel(el.id)}
+        >
+          {`# ${el.name}`}
+        </ChannelsLink>
+      </ChannelsLinkDiv>
+    ))}
+  </>
+);
 
-  useEffect(() => {
-    const unsubscribe = subscribeToMore({
-      document: SUBSCRIPTION_CHANNEL,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const { channelSubscription } = subscriptionData.data;
-        const newContents = {
-          ...prev,
-          channelList: [...channelSubscription],
-        };
-        return newContents;
-      },
-    });
-    return () => unsubscribe();
-  }, [subscribeToMore]);
-
-  return (
-    <>
-      {!loading && data.channelList.map((el) => (
-        <ChannelsLinkDiv>
-          <ChannelsLink
-            key={el.id}
-            check={(clickedChannel === el.id)}
-            onClick={() => handleClickChannel(el.id, el.name)}
-          >
-            {`# ${el.name}`}
-          </ChannelsLink>
-        </ChannelsLinkDiv>
-      ))}
-    </>
-  );
-
-  function handleClickChannel(id, name) {
-    const channel = { id, name };
-    props.updateCurChannel(channel);
-    setClickedChannel(id);
-  }
-};
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    updateCurChannel,
-  }, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(Channels);
+export default Channels;

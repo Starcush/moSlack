@@ -21,12 +21,13 @@ const Channel = (props) => {
   const textAreaEl = useRef(null);
   const [text, setText] = useState('');
   const [show, setShow] = useState(false);
+  const { channel: curChannel } = props;
 
   const [postContent] = useMutation(MUTATION_CONTENTS_ADD);
 
   return (
     <ChannelContainer>
-      {/* <ChannelHeader /> */}
+      <ChannelHeader curChannel={curChannel} />
       <ChannelContentsList />
       <InsertContainer>
         <InputDiv>
@@ -47,7 +48,8 @@ const Channel = (props) => {
   );
 
   function sendMessage(event, p) {
-    const { channelID } = p;
+    const { channel } = p;
+    const channelID = channel.id;
     const userID = Number(window.sessionStorage.getItem('userID'));
 
     if (!userID) setShow(true);
@@ -78,7 +80,7 @@ const Channel = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  channelID: state.channelReducer.channelID,
+  channel: state.channelReducer.channel,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(

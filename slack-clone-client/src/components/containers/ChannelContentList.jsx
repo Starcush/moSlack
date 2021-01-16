@@ -18,7 +18,7 @@ import { QUERY_CHAT, SUBSCRIPTION_CHAT } from '../../js/apis/query';
 
 const ChannelContentsList = (props) => {
   const { channel } = props;
-  const { channelID } = channel.id;
+  const channelID = channel.id;
   const { loading, data, subscribeToMore } = useQuery(QUERY_CHAT, {
     variables: { channelId: channelID },
   });

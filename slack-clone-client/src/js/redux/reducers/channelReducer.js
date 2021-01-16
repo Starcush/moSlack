@@ -9,7 +9,7 @@ export default function channelReducer(state = initialState, action) {
   switch (action.type) {
   case type.UPDATE_CURCHANNEL: {
     const { channel } = action.payload;
-    console.log('channel in reducer ::: ', channel);
+    // console.log('channel in reducer ::: ', channel);
     return {
       ...state,
       channel,
@@ -24,8 +24,6 @@ export default function channelReducer(state = initialState, action) {
   }
 
   default:
-    return {
-      channelID: state.channelID,
-    };
+    return state;
   }
 }
