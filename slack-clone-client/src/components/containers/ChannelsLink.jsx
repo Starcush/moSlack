@@ -2,14 +2,14 @@ import React from 'react';
 
 import { ChannelsLinkDiv, ChannelsLink } from '../views/StyledComponents';
 
-const Channels = (props) => (
+const Channels = ({ channelList, curChannelId, handleCurChannel }) => (
   <>
-    {props.channelList.map((el) => (
+    {channelList.map((el) => (
       <ChannelsLinkDiv>
         <ChannelsLink
           key={el.id}
-          check={(props.curChannelId === el.id)}
-          onClick={() => props.handleCurChannel(el.id)}
+          check={(curChannelId === el.id)}
+          onClick={() => handleCurChannel(el.id)}
         >
           {`# ${el.name}`}
         </ChannelsLink>

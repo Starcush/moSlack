@@ -6,13 +6,13 @@ import { UserIcon } from './StyledComponents';
 
 dotenv.config();
 
-const LoginButton = (props) => (
+const LoginButton = ({ responseGoogle }) => (
   <GoogleLogin
     clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
     render={(renderProps) => <UserIcon onClick={() => renderProps.onClick()} />}
     buttonText="Login"
-    onSuccess={(response) => props.responseGoogle(response)}
-    onFailure={props.responseGoogle}
+    onSuccess={(response) => responseGoogle(response)}
+    onFailure={responseGoogle}
   />
 );
 

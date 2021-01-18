@@ -267,6 +267,7 @@ export const ChannelsLink = styled.a`
 export const ChannelContainer = styled.div`
   flex: 24;
   display: flex;
+  flex-direction: column;
   width: calc((100vw - 20px) * (24 / 28));
   height: calc((100vh - 20px) * (39 / 41));
   box-sizing: border-box;

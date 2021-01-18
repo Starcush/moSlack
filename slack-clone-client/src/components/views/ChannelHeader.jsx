@@ -21,6 +21,7 @@ const ChannelHeader = (props) => {
 export default ChannelHeader;
 
 const HeaderContainer = styled.div`
+  flex: 3;
   box-sizing: border-box;
   width: 100%;
   height: 10%;
@@ -37,12 +38,12 @@ const HeaderDiv = styled.div`
 `;
 
 const ContentsContainer = styled.div`
-  background-color: blue;
+  /* background-color: blue; */
   flex: 10;
 `;
 
 const IconContainer = styled.div`
-  background-color: green;
+  /* background-color: green; */
   flex: 1;
   display: flex;
   flex-direction: row-reverse;

@@ -28,7 +28,7 @@ const ChannelList = (props) => {
       const curChannel = channelList.find((channel) => channel.id === curChannelId);
       props.updateCurChannel(curChannel);
     }
-  }, [curChannelId]);
+  }, [curChannelId, data, loading, props]);
 
   useEffect(() => {
     const unsubscribe = subscribeToMore({
