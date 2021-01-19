@@ -1,49 +1,48 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { useMutation } from '@apollo/client';
+import styled from 'styled-components';
+import { Send } from '@styled-icons/material-rounded';
 
-import {
-  ChannelContainer,
-  InsertContainer,
-  InputDiv,
-  Textarea,
-  ButtonDiv,
-  InputButton,
-} from '../views/StyledComponents';
 import ChannelContentsList from './ChannelContentList';
-import { updateList } from '../../js/redux/actions';
 import { MUTATION_CONTENTS_ADD } from '../../js/apis/query';
 import LoginErrorModal from './LoginErrorModal';
-import ChannelHeader from '../views/ChannelHeader';
+import ChannelHeader from './ChannelHeader';
+import ChannelDetail from './ChannelDetail';
 
 const Channel = (props) => {
   const textAreaEl = useRef(null);
   const [text, setText] = useState('');
   const [show, setShow] = useState(false);
-  const { channel: curChannel } = props;
+  const { channelState } = props;
+  const { channel: curChannel, showDetail } = channelState;
 
   const [postContent] = useMutation(MUTATION_CONTENTS_ADD);
 
   return (
     <ChannelContainer>
-      <ChannelHeader curChannel={curChannel} />
-      <ChannelContentsList />
-      <InsertContainer>
-        <InputDiv>
-          <Textarea
-            placeholder="내용을 입력해주세요."
-            value={text}
-            onChange={(e) => handleChange(e.target.value)}
-            ref={textAreaEl}
-            onKeyDown={(e) => handleKeyDown(e, props)}
-          />
-          <ButtonDiv>
-            <InputButton onClick={(e) => sendMessage(e, props)} />
-          </ButtonDiv>
-        </InputDiv>
-      </InsertContainer>
-      <LoginErrorModal showModal={show} setShow={setShow} />
+      <PrimaryContents showDetail={showDetail}>
+        <ChannelHeader curChannel={curChannel} />
+        <ChannelContentsList />
+        <InsertContainer showDetail={showDetail}>
+          <InputDiv>
+            <Textarea
+              placeholder="내용을 입력해주세요."
+              value={text}
+              onChange={(e) => handleChange(e.target.value)}
+              ref={textAreaEl}
+              onKeyDown={(e) => handleKeyDown(e, props)}
+            />
+            <ButtonDiv>
+              <InputButton onClick={(e) => sendMessage(e, props)} />
+            </ButtonDiv>
+          </InputDiv>
+        </InsertContainer>
+        <LoginErrorModal showModal={show} setShow={setShow} />
+      </PrimaryContents>
+      <SecondaryContents>
+        <ChannelDetail />
+      </SecondaryContents>
     </ChannelContainer>
   );
 
@@ -80,14 +79,86 @@ const Channel = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  channel: state.channelReducer.channel,
+  channelState: state.channelReducer,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(
-  {
-    updateList,
-  },
-  dispatch,
-);
+export default connect(mapStateToProps)(Channel);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Channel);
+const ChannelContainer = styled.div`
+  flex: 24;
+  display: flex;
+  flex-direction: row;
+  width: calc((100vw - 20px) * (24 / 28));
+  height: calc((100vh - 20px) * (39 / 41));
+  box-sizing: border-box;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+`;
+
+const PrimaryContents = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: ${({ showDetail }) => (showDetail ? 'calc((100vw - 20px) * (24 / 28) - 400px)' : 'calc((100vw - 20px) * (24 / 28))')};
+`;
+
+const SecondaryContents = styled.div`
+  width: 400px;
+  height: 100%;
+`;
+
+const InsertContainer = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  /* position: fixed; */
+  z-index: 3;
+  bottom: 10px;
+  width: ${({ showDetail }) => (showDetail ? 'calc((100vw - 20px) * (24 / 28) - 400px)' : 'calc((100vw - 20px) * (24 / 28))')};
+  /* width: 100%; */
+  height: 15vh;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+`;
+
+const InputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid #222222;
+  width: 98%;
+  margin-bottom: 10px;
+  border-radius: 3px;
+`;
+
+const Textarea = styled.textarea`
+  flex: 2;
+  outline: none;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #878787;
+  width: 100%;
+  padding: 8px;
+`;
+
+const ButtonDiv = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #fff;
+`;
+
+const InputButton = styled(Send)`
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  color: gray;
+  cursor: pointer;
+
+  &:hover {
+    color: #222222;
+  }
+`;

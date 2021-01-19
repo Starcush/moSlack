@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 import { CaretRight, Plus } from '@styled-icons/fa-solid';
-import { Send } from '@styled-icons/material-rounded';
 import { MoreHoriz } from '@styled-icons/material';
 import GoogleIcon from '../../google.png';
 
@@ -278,7 +277,7 @@ export const ChannelContainer = styled.div`
 export const ContentsListDiv = styled.div`
   width: calc((100vw - 20px) * (24 / 28));
   flex: 30;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: calc((85vh - 20px) * (39 / 41));
 `;
 
@@ -338,60 +337,4 @@ export const Time = styled.div`
 
 export const ContentSection = styled.section`
   margin-top: 5px;
-`;
-
-export const InsertContainer = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  box-sizing: border-box;
-  position: fixed;
-  z-index: 3;
-  bottom: 10px;
-  width: calc((100vw - 20px) * (24 / 28));
-  height: 15vh;
-  padding: 20px;
-  background-color: #fff;
-  border-bottom: 1px solid gray;
-  border-right: 1px solid gray;
-`;
-
-export const InputDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  border: 1px solid #222222;
-  width: 98%;
-  margin-bottom: 10px;
-  border-radius: 3px;
-`;
-
-export const Textarea = styled.textarea`
-  flex: 2;
-  outline: none;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid #878787;
-  width: 100%;
-  padding: 8px;
-`;
-
-export const ButtonDiv = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: #fff;
-`;
-
-export const InputButton = styled(Send)`
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
-  color: gray;
-  cursor: pointer;
-
-  &:hover {
-    color: #222222;
-  }
 `;

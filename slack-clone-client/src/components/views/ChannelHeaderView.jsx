@@ -2,26 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { InformationCircle } from '@styled-icons/heroicons-outline';
 
-const ChannelHeader = (props) => {
-  const { curChannel } = props;
-  return (
-    <HeaderContainer>
-      <HeaderDiv>
-        <ContentsContainer>
-          {curChannel.name}
-        </ContentsContainer>
-        <IconContainer>
-          <InformationIcon />
-        </IconContainer>
-      </HeaderDiv>
-    </HeaderContainer>
-  );
-};
+const ChannelHeaderView = ({ curChannel, handleDetailDiv }) => (
+  <HeaderContainer>
+    <HeaderDiv>
+      <ContentsContainer>
+        {curChannel.name}
+      </ContentsContainer>
+      <IconContainer>
+        <InformationIcon onClick={handleDetailDiv} />
+      </IconContainer>
+    </HeaderDiv>
+  </HeaderContainer>
+);
 
-export default ChannelHeader;
+export default ChannelHeaderView;
 
 const HeaderContainer = styled.div`
-  flex: 3;
+  flex: 1;
   box-sizing: border-box;
   width: 100%;
   height: 10%;

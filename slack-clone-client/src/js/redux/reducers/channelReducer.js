@@ -3,6 +3,7 @@ import * as type from '../actionTypes';
 const initialState = {
   channel: { id: 1, name: '' },
   channelList: [],
+  showDetail: false,
 };
 
 export default function channelReducer(state = initialState, action) {
@@ -20,6 +21,14 @@ export default function channelReducer(state = initialState, action) {
     return {
       ...state,
       channelList,
+    };
+  }
+  case type.SHOW_CHANNEL_DETAIL: {
+    console.log('redux show detail action');
+    const { showDetail } = action.payload;
+    return {
+      ...state,
+      showDetail,
     };
   }
 
