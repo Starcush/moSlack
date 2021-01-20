@@ -6,7 +6,9 @@ const ChannelHeaderView = ({ curChannel, handleDetailDiv }) => (
   <HeaderContainer>
     <HeaderDiv>
       <ContentsContainer>
-        {curChannel.name}
+        <Title>
+          {`# ${curChannel.name}`}
+        </Title>
       </ContentsContainer>
       <IconContainer>
         <InformationIcon onClick={handleDetailDiv} />
@@ -18,25 +20,34 @@ const ChannelHeaderView = ({ curChannel, handleDetailDiv }) => (
 export default ChannelHeaderView;
 
 const HeaderContainer = styled.div`
-  flex: 1;
+  flex: 1.5;
   box-sizing: border-box;
   width: 100%;
-  height: 10%;
+  /* height: 10%; */
+  display: flex;
+  align-items: center;
   
   border-bottom: 1px solid gray;
-  padding: 20px 40px;
+  padding: 5px 40px;
 `;
 
 const HeaderDiv = styled.div`
   /* background-color: gray; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
 `;
 
 const ContentsContainer = styled.div`
   /* background-color: blue; */
   flex: 10;
+  display: flex;
+  align-items: center;
+`;
+
+const Title = styled.span`
+  font-weight: 800;
+  font-size: 18px;
 `;
 
 const IconContainer = styled.div`

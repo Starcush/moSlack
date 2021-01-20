@@ -88,8 +88,10 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(ChannelContentsList);
 
 const ContentsListDiv = styled.div`
-  width: calc((100vw - 20px) * (24 / 28));
-  flex: 15;
+  /* width: calc((100vw - 20px) * (24 / 28)); */
+  box-sizing: border-box;
+  width: inherit;
+  flex: 13;
   overflow-y: auto;
   height: calc((85vh - 20px) * (39 / 41));
 `;
@@ -99,6 +101,7 @@ const ChannelContentsDiv = styled.div`
   display: flex;
   /* width: calc((100vw - 120px) * (24 / 28)); */
   width: inherit;
+  box-sizing: border-box;
 
   &:hover {
     background-color: #ededed;

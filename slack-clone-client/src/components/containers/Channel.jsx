@@ -99,6 +99,8 @@ const PrimaryContents = styled.div`
   display: flex;
   flex-direction: column;
   width: ${({ showDetail }) => (showDetail ? 'calc((100vw - 20px) * (24 / 28) - 400px)' : 'calc((100vw - 20px) * (24 / 28))')};
+  box-sizing: border-box;
+  border-right: 1px solid gray;
 `;
 
 const SecondaryContents = styled.div`
@@ -107,7 +109,7 @@ const SecondaryContents = styled.div`
 `;
 
 const InsertContainer = styled.div`
-  flex: 1;
+  flex: 3;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
@@ -116,11 +118,11 @@ const InsertContainer = styled.div`
   bottom: 10px;
   width: ${({ showDetail }) => (showDetail ? 'calc((100vw - 20px) * (24 / 28) - 400px)' : 'calc((100vw - 20px) * (24 / 28))')};
   /* width: 100%; */
-  height: 15vh;
-  padding: 20px;
+  /* height: 15vh; */
+  /* padding: 10px; */
   background-color: #fff;
-  border-bottom: 1px solid gray;
   border-right: 1px solid gray;
+  border-top: 1px solid gray;
 `;
 
 const InputDiv = styled.div`
@@ -128,9 +130,10 @@ const InputDiv = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   border: 1px solid #222222;
-  width: 98%;
-  margin-bottom: 10px;
+  width: 95%;
+  /* margin-bottom: 10px; */
   border-radius: 3px;
+  margin: 20px 20px;
 `;
 
 const Textarea = styled.textarea`

@@ -7,7 +7,7 @@ const ChannelDetailView = ({ showDetail, closeDetail }) => {
   return (
     <Container show={showDetail}>
       <Header>
-        <h1>Header</h1>
+        세부정보
         <CloseIcon onClick={closeDetail} />
       </Header>
       <Main>
@@ -24,15 +24,18 @@ const Container = styled.div`
   flex-direction: column;
   width: 400px;
   height: 100%;
-`;
-
-const Header = styled.div`
-  flex: 3;
   background-color: yellow;
 `;
 
+const Header = styled.div`
+  flex: 1.5;
+  background-color: green;
+  box-sizing: border-box;
+  border-bottom: 1px solid gray;
+`;
+
 const Main = styled.div`
-  flex: 10;
+  flex: 15;
 `;
 
 const CloseIcon = styled(Close)`
