@@ -41,7 +41,7 @@ const Channel = (props) => {
         <LoginErrorModal showModal={show} setShow={setShow} />
       </PrimaryContents>
       <SecondaryContents>
-        <ChannelDetail />
+        {/* <ChannelDetail /> */}
       </SecondaryContents>
     </ChannelContainer>
   );

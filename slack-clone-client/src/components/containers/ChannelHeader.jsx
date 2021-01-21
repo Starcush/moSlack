@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,11 +7,25 @@ import { showChannelDetail } from '../../js/redux/actions';
 
 const ChannelHeader = (props) => {
   const { curChannel } = props;
-  return <ChannelHeaderView curChannel={curChannel} handleDetailDiv={showDetailDiv} />;
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <ChannelHeaderView
+      curChannel={curChannel}
+      handleDetailDiv={showDetailDiv}
+      showModal={showModal}
+      deleteChannel={deleteChannel}
+    />
+  );
 
   function showDetailDiv() {
-    const showDetail = true;
-    props.showChannelDetail(showDetail);
+    // const showDetail = true;
+    // props.showChannelDetail(showDetail);
+    setShowModal(!showModal);
+  }
+
+  function deleteChannel() {
+    console.log('delete Channel, current channel is ', curChannel);
   }
 };
 

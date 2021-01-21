@@ -7,7 +7,13 @@ import { showChannelDetail } from '../../js/redux/actions';
 
 const ChannelDetail = (props) => {
   const { channelState } = props;
-  return <ChannelDetailView showDetail={channelState.showDetail} closeDetail={closeDetail} />;
+  return (
+    <ChannelDetailView
+      showDetail={channelState.showDetail}
+      closeDetail={closeDetail}
+      channel={channelState.channel}
+    />
+  );
 
   function closeDetail() {
     props.showChannelDetail(false);

@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { InformationCircle } from '@styled-icons/heroicons-outline';
 
-const ChannelHeaderView = ({ curChannel, handleDetailDiv }) => (
+import ChannelModalView from './ChannelModalView';
+
+const ChannelHeaderView = ({
+  curChannel, handleDetailDiv, showModal, deleteChannel,
+}) => (
   <HeaderContainer>
     <HeaderDiv>
       <ContentsContainer>
@@ -14,6 +18,7 @@ const ChannelHeaderView = ({ curChannel, handleDetailDiv }) => (
         <InformationIcon onClick={handleDetailDiv} />
       </IconContainer>
     </HeaderDiv>
+    <ChannelModalView showModal={showModal} deleteChannel={deleteChannel} />
   </HeaderContainer>
 );
 

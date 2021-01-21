@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Close } from '@styled-icons/material';
 
-const ChannelDetailView = ({ showDetail, closeDetail }) => {
+const ChannelDetailView = ({ showDetail, closeDetail, channel }) => {
   const test = 1;
   return (
     <Container show={showDetail}>
       <Header>
         세부정보
+        {channel.name}
         <CloseIcon onClick={closeDetail} />
       </Header>
       <Main>
@@ -32,10 +33,11 @@ const Header = styled.div`
   background-color: green;
   box-sizing: border-box;
   border-bottom: 1px solid gray;
+  padding: 5px 20px;
 `;
 
 const Main = styled.div`
-  flex: 15;
+  flex: 16;
 `;
 
 const CloseIcon = styled(Close)`
