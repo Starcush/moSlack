@@ -1,25 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ChannelModalView = ({ showModal, deleteChannel }) => (
-  <ModalContainer showModal={showModal}>
+const ChannelMenuListView = ({ showMenus, handleCheckModal }) => (
+  <ModalContainer showMenus={showMenus}>
     <ModalMain>
-      <OptionList onClick={deleteChannel}>
+      <OptionList onClick={() => handleCheckModal(true)}>
         채널삭제
       </OptionList>
     </ModalMain>
   </ModalContainer>
 );
 
-export default ChannelModalView;
+export default ChannelMenuListView;
 
 const ModalContainer = styled.div`
-  display: ${({ showModal }) => (showModal ? 'block' : 'none')};
+  display: ${({ showMenus }) => (showMenus ? 'block' : 'none')};
   /* width: 200px; */
   /* height: 200px; */
   background-color: #ededed;
   position: absolute;
-  top: 85px;
+  top: calc((100vh * (39 / 41) * ((1.5) / 17.5)) + 30px); // 어느 화면이든 information icon 밑에 위치하게 하고 싶다.
   right: 50px;
   border-radius: 5px;
 `;

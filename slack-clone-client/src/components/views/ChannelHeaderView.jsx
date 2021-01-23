@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { InformationCircle } from '@styled-icons/heroicons-outline';
 
-import ChannelModalView from './ChannelModalView';
+import ChannelMenuListView from './ChannelMenuListView';
 
 const ChannelHeaderView = ({
-  curChannel, handleDetailDiv, showModal, deleteChannel,
+  curChannel, handleMenuItems, showMenus, handleCheckModal, isDefaultChannel,
 }) => (
   <HeaderContainer>
     <HeaderDiv>
@@ -15,10 +15,10 @@ const ChannelHeaderView = ({
         </Title>
       </ContentsContainer>
       <IconContainer>
-        <InformationIcon onClick={handleDetailDiv} />
+        <InformationIcon onClick={() => !isDefaultChannel && handleMenuItems(true)} />
       </IconContainer>
     </HeaderDiv>
-    <ChannelModalView showModal={showModal} deleteChannel={deleteChannel} />
+    <ChannelMenuListView showMenus={showMenus} handleCheckModal={handleCheckModal} />
   </HeaderContainer>
 );
 

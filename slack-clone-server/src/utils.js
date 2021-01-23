@@ -64,7 +64,7 @@ const addChannel = async (channelName) => {
 
 const deleteChannel = async (channelId) => {
   try {
-    const query = 'delete from `CHANNELS` where id = (?)';
+    const query = 'delete from `CHANNELS` where id = ?';
     const param = [channelId];
     await connection.promise().query(query, param);
   } catch (e) {

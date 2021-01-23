@@ -1,36 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useMutation } from '@apollo/client';
 
 import ChannelHeaderView from '../views/ChannelHeaderView';
-import { showChannelDetail } from '../../js/redux/actions';
+import { showChannelDetail, updateCurChannel } from '../../js/redux/actions';
+import CheckModal from './CheckModal';
+import { MUTATION_CHANNEL_DELETE } from '../../js/apis/query';
 
 const ChannelHeader = (props) => {
   const { curChannel } = props;
-  const [showModal, setShowModal] = useState(false);
+  const [showMenuItems, setShowMenuItems] = useState(false);
+  const [showCheckModal, setShowCheckModal] = useState(false);
+  const [isDefaultChannel, setIsDefaultChannel] = useState(true);
+
+  const [deleteChannel, { data, loading }] = useMutation(MUTATION_CHANNEL_DELETE);
+
+  useEffect(() => {
+    if (curChannel.id === 1) {
+      setIsDefaultChannel(true);
+    } else {
+      setIsDefaultChannel(false);
+    }
+  }, [curChannel]);
 
   return (
-    <ChannelHeaderView
-      curChannel={curChannel}
-      handleDetailDiv={showDetailDiv}
-      showModal={showModal}
-      deleteChannel={deleteChannel}
-    />
+    <>
+      <ChannelHeaderView
+        curChannel={curChannel}
+        handleMenuItems={handleMenuItems}
+        showMenus={showMenuItems}
+        handleCheckModal={handleCheckModal} // 여기서는 check modal이 켜지기만 한다
+        isDefaultChannel={isDefaultChannel}
+      />
+      <CheckModal
+        showModal={showCheckModal}
+        handleCheckModal={handleCheckModal} // 여기서는 check modal이 꺼지기만 한다
+        deleteChannel={(e) => fetchDeleteChannel(e)}
+      />
+    </>
   );
 
-  function showDetailDiv() {
-    // const showDetail = true;
-    // props.showChannelDetail(showDetail);
-    setShowModal(!showModal);
+  function handleMenuItems() {
+    setShowMenuItems(!showMenuItems);
   }
 
-  function deleteChannel() {
+  function handleCheckModal(handle) {
+    setShowCheckModal(handle);
+  }
+
+  function fetchDeleteChannel(e) {
+    e.preventDefault();
     console.log('delete Channel, current channel is ', curChannel);
+    deleteChannel({
+      variables: { id: curChannel.id },
+    });
+    if (!loading) {
+      console.log('data :: ', data);
+    }
+    props.updateCurChannel({ id: 1, name: 'general' });
   }
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   showChannelDetail,
+  updateCurChannel,
 }, dispatch);
 
 export default connect(null, mapDispatchToProps)(ChannelHeader);
