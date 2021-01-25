@@ -33,7 +33,7 @@ React와 GraphQL를 중심으로 학습하기 위해 업무용 메신저로 사�
 - [x] OAuth2.0을 기반으로 한 구글 소셜 로그인 적용<br>
 - [ ] client에서 Apollo-Client 적용<br>
 - [ ] React-Router 적용<br>
-- [ ] 여러 디자인 방법론 중 하나 적용하기<br>
+- [ ] 여러 디자인 방법론 중 하나 적용하기 - Contiainer & View Pattern(2021.1.24)<br>
 
 ### 3. 사용된 기술
 
