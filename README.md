@@ -39,7 +39,7 @@ React와 GraphQL를 중심으로 학습하기 위해 업무용 메신저로 사�
 
 #### Client
 
-React, Styled Component, Redux, GraphQL(apollo-client)
+React, Styled Components, Redux, GraphQL(apollo-client)
 
 #### Server
 
