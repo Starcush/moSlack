@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { LeftArrowAlt, RightArrowAlt } from '@styled-icons/boxicons-regular';
 
-import GoogleLoginButton from '../../containers/GoogleLogin';
+import GoogleLoginButton from '../containers/LoginButtonContainer';
 
 const OptionView = ({ hoverArrowIcon, mouseEnterEvent, mouseLeaveEvent }) => {
   const { leftArrow, rightArrow } = hoverArrowIcon;

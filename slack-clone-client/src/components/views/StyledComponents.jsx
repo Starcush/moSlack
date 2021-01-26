@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { CaretRight, Plus } from '@styled-icons/fa-solid';
 import { MoreHoriz } from '@styled-icons/material';
-import GoogleIcon from '../../google.png';
 
 import style from './styledVariables';
 
@@ -23,13 +22,6 @@ export const Row1 = styled.div`
 export const Row2 = styled.div`
   display: flex;
   flex: 39;
-`;
-
-export const UserIcon = styled.div`
-  content: url(${GoogleIcon});
-  width: 18px;
-  height: 18px;
-  z-index: 3;
 `;
 
 export const WorkSpaceContainer = styled.div`
@@ -54,15 +46,6 @@ export const WorkSpaceDiv = styled.div`
   line-height: 37px;
   font-weight: 800;
   font-size: 20px;
-`;
-
-export const ChannelListContainer = styled.div`
-  flex: 3;
-  background: ${(props) => props.theme.backgroundColor};
-  color: white;
-  height: auto;
-  min-width: 162px;
-  border-top: 1px solid ${style.lightPurple};
 `;
 
 export const ChannelListHeader = styled.div`
@@ -176,30 +159,6 @@ export const ModalCreateBtn = styled(ModalBtn)`
 `;
 
 export const ModalCancelBtn = styled(ModalBtn)``;
-
-export const ChannelsLinkDiv = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-`;
-
-export const ChannelsLink = styled.a`
-  width: 100%;
-  text-decoration: none;
-  display: flex;
-  justify-content: space-between;
-  margin-block-start: 0em;
-  color: ${({ check }) => (check ? '#fff' : style.lightPurple)};
-  background-color: ${({ check }) => (check ? '#1164a3' : 'none')};
-  padding: 1px 0 0 35px;
-  margin-top: 0;
-  cursor: pointer;
-
-  &:hover {
-    color: #fff;
-    background-color: ${({ check }) => (check ? '#1164a3' : '#350d36')};
-  }
-`;
 
 export const ChannelContainer = styled.div`
   flex: 24;

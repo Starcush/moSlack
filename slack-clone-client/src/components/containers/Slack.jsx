@@ -4,7 +4,7 @@ import * as styledVariables from '../views/styledVariables';
 import { channelSize } from '../views/styledVariables';
 import Option from '../option/containers/OptionContainer';
 import WorkSpace from './WorkSpace';
-import ChannelList from './ChannelList';
+import ChannelList from '../channelslist/container/ChannelList';
 import Channel from './Channel';
 
 const Slack = () => (

@@ -1,8 +1,9 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import dotenv from 'dotenv';
+import styled from 'styled-components';
 
-import { UserIcon } from './StyledComponents';
+import GoogleIcon from '../../../google.png';
 
 dotenv.config();
 
@@ -15,5 +16,12 @@ const LoginButton = ({ responseGoogle }) => (
     onFailure={responseGoogle}
   />
 );
+
+const UserIcon = styled.div`
+  content: url(${GoogleIcon});
+  width: 18px;
+  height: 18px;
+  z-index: 3;
+`;
 
 export default LoginButton;
