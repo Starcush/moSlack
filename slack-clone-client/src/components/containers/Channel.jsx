@@ -6,9 +6,9 @@ import { Send } from '@styled-icons/material-rounded';
 
 import ChannelContentsList from './ChannelContentList';
 import { MUTATION_CONTENTS_ADD } from '../../js/apis/query';
-import LoginErrorModal from './LoginErrorModal';
 import ChannelHeader from './ChannelHeader';
 import ChannelDetail from './ChannelDetail';
+import ModalContainer from '../modal/container/ModalContainer';
 
 const Channel = (props) => {
   const textAreaEl = useRef(null);
@@ -34,11 +34,11 @@ const Channel = (props) => {
               onKeyDown={(e) => handleKeyDown(e, props)}
             />
             <ButtonDiv>
-              <InputButton onClick={(e) => sendMessage(e, props)} />
+              <InputButton onClick={(e) => sendMessage(e)} />
             </ButtonDiv>
           </InputDiv>
         </InsertContainer>
-        <LoginErrorModal showModal={show} setShow={setShow} />
+        <ModalContainer type="loginError" showModal={show} handleClose={() => setShow(false)} />
       </PrimaryContents>
       <SecondaryContents>
         {/* <ChannelDetail /> */}
@@ -46,9 +46,8 @@ const Channel = (props) => {
     </ChannelContainer>
   );
 
-  function sendMessage(event, p) {
-    const { channel } = p;
-    const channelID = channel.id;
+  function sendMessage(event) {
+    const channelID = curChannel.id;
     const userID = Number(window.sessionStorage.getItem('userID'));
 
     if (!userID) setShow(true);

@@ -3,7 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import { CaretRight, Plus } from '@styled-icons/fa-solid';
 
 import ChannelLinkView from './ChannelLinkView';
-import AddChannelModal from '../../containers/AddChannelModal';
+// import AddChannelModal from '../../containers/AddChannelModal';
+import ModalContainer from '../../modal/container/ModalContainer';
 
 const ChannelListView = ({
   data, curChannelId, showAddModal, toggleClicked, toggleList, handleShowModal, handleCurChannel,
@@ -23,7 +24,8 @@ const ChannelListView = ({
     ) : (
       <></>
     )}
-    <AddChannelModal
+    <ModalContainer
+      type="addChannel"
       showModal={showAddModal}
       handleClose={() => handleShowModal('close')}
     />

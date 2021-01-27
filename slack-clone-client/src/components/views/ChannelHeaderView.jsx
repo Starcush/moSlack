@@ -7,19 +7,24 @@ import ChannelMenuListView from './ChannelMenuListView';
 const ChannelHeaderView = ({
   curChannel, handleMenuItems, showMenus, handleCheckModal, isDefaultChannel,
 }) => (
-  <HeaderContainer>
-    <HeaderDiv>
-      <ContentsContainer>
-        <Title>
-          {`# ${curChannel.name}`}
-        </Title>
-      </ContentsContainer>
-      <IconContainer>
-        <InformationIcon onClick={() => !isDefaultChannel && handleMenuItems(true)} />
-      </IconContainer>
-    </HeaderDiv>
-    <ChannelMenuListView showMenus={showMenus} handleCheckModal={handleCheckModal} />
-  </HeaderContainer>
+  <>
+    {curChannel
+  && (
+    <HeaderContainer>
+      <HeaderDiv>
+        <ContentsContainer>
+          <Title>
+            {`# ${curChannel.name}`}
+          </Title>
+        </ContentsContainer>
+        <IconContainer>
+          <InformationIcon onClick={() => !isDefaultChannel && handleMenuItems(true)} />
+        </IconContainer>
+      </HeaderDiv>
+      <ChannelMenuListView showMenus={showMenus} handleCheckModal={handleCheckModal} />
+    </HeaderContainer>
+  )}
+  </>
 );
 
 export default ChannelHeaderView;

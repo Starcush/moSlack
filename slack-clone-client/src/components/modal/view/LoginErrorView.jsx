@@ -1,26 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const LoginErrorModal = ({ showModal, setShow }) => {
-  return (
-    <ModalContainer modal={showModal}>
-      <Modal>
-        먼저 로그인을 해주세요.
-        <ModalBtnDiv>
-          <ModalBtn onClick={closeModal}>
-            확인
-          </ModalBtn>
-        </ModalBtnDiv>
-      </Modal>
-    </ModalContainer>
-  );
-
-  function closeModal() {
-    setShow(false);
-  }
-};
-
-export default LoginErrorModal;
+const LoginErrorView = ({ showModal, handleClose }) => (
+  <ModalContainer modal={showModal}>
+    <Modal>
+      먼저 로그인을 해주세요.
+      <ModalBtnDiv>
+        <ModalBtn onClick={handleClose}>
+          확인
+        </ModalBtn>
+      </ModalBtnDiv>
+    </Modal>
+  </ModalContainer>
+);
 
 const ModalContainer = styled.div`
   position: fixed;
@@ -50,7 +42,7 @@ const Modal = styled.section`
   box-shadow: 3px 3px 3px gray;
 `;
 
-export const ModalBtnDiv = styled.div`
+const ModalBtnDiv = styled.div`
   margin-top: 2vh;
 `;
 
@@ -61,3 +53,5 @@ const ModalBtn = styled.button`
   border: none;
   box-shadow: 2px 2px 2px gray;
 `;
+
+export default LoginErrorView;
