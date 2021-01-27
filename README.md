@@ -3,7 +3,7 @@
 ### 0. 클론 코딩의 시작
 
 React와 GraphQL를 중심으로 학습하기 위해 업무용 메신저로 사용되고 있는 **Slack**을 따라 만들어보는 프로젝트를 시작했습니다.<br>
-- [[토이프로젝트로 해보는 슬랙 클론 코딩 - velog]](https://velog.io/@cush_wa/%ED%86%A0%EC%9D%B4%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%81%B4%EB%A1%A0-%EC%BD%94%EB%94%A9)
+[[토이프로젝트로 해보는 슬랙 클론 코딩 - velog]](https://velog.io/@cush_wa/%ED%86%A0%EC%9D%B4%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%81%B4%EB%A1%A0-%EC%BD%94%EB%94%A9)
 
 ### 1. 원하는 기능
 
