@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 
 import ChannelHeaderView from '../views/ChannelHeaderView';
 import { showChannelDetail, updateCurChannel } from '../../js/redux/actions';
-import CheckModal from './CheckModal';
+import ModalContainer from '../modal/container/ModalContainer';
 import { MUTATION_CHANNEL_DELETE } from '../../js/apis/query';
 
 const ChannelHeader = (props) => {
@@ -33,7 +33,8 @@ const ChannelHeader = (props) => {
         handleCheckModal={handleCheckModal} // 여기서는 check modal이 켜지기만 한다
         isDefaultChannel={isDefaultChannel}
       />
-      <CheckModal
+      <ModalContainer
+        type="check"
         showModal={showCheckModal}
         handleCheckModal={handleCheckModal} // 여기서는 check modal이 꺼지기만 한다
         deleteChannel={(e) => fetchDeleteChannel(e)}

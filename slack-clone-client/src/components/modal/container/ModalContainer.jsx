@@ -2,17 +2,26 @@ import React from 'react';
 
 import AddChannelContainer from './AddChannelModalContainer';
 import LoginErrorContainer from './LoginErrorContainer';
+import CheckModalContainer from './CheckModalContainer';
 
-const ModalContainer = ({ type, showModal, handleClose }) => {
+const ModalContainer = (props) => {
   let result;
 
-  if (type === 'addChannel') {
+  if (props.type === 'addChannel') {
     result = (
-      <AddChannelContainer showModal={showModal} handleClose={handleClose} />
+      <AddChannelContainer showModal={props.showModal} handleClose={props.handleClose} />
     );
-  } else if (type === 'loginError') {
+  } else if (props.type === 'loginError') {
     result = (
-      <LoginErrorContainer showModal={showModal} handleClose={handleClose} />
+      <LoginErrorContainer showModal={props.showModal} handleClose={props.handleClose} />
+    );
+  } else if (props.type === 'check') {
+    result = (
+      <CheckModalContainer
+        showModal={props.showModal}
+        handleCheckModal={props.handleCheckModal}
+        deleteChannel={props.deleteChannel}
+      />
     );
   }
 

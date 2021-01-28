@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import ChannelDetailView from '../views/ChannelDetailView';
-import { showChannelDetail } from '../../js/redux/actions';
+import ChannelDetailView from '../view/ChannelDetailView';
+import { showChannelDetail } from '../../../js/redux/actions';
 
 const ChannelDetail = (props) => {
   const { channelState } = props;

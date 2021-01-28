@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import CheckModalView from '../views/CheckModalView';
+import CheckModalView from '../view/CheckModalView';
 
 const CheckModal = ({ showModal, handleCheckModal, deleteChannel }) => {
   return (

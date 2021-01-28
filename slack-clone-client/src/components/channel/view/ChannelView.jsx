@@ -4,11 +4,11 @@ import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
 import { Send } from '@styled-icons/material-rounded';
 
-import ChannelContentsList from './ChannelContentList';
-import { MUTATION_CONTENTS_ADD } from '../../js/apis/query';
+import ChannelContentsList from '../../containers/ChannelContentList';
+import { MUTATION_CONTENTS_ADD } from '../../../js/apis/query';
 import ChannelHeader from './ChannelHeader';
 import ChannelDetail from './ChannelDetail';
-import ModalContainer from '../modal/container/ModalContainer';
+import ModalContainer from '../../modal/container/ModalContainer';
 
 const Channel = (props) => {
   const textAreaEl = useRef(null);
@@ -80,8 +80,6 @@ const Channel = (props) => {
 const mapStateToProps = (state) => ({
   channelState: state.channelReducer,
 });
-
-export default connect(mapStateToProps)(Channel);
 
 const ChannelContainer = styled.div`
   flex: 24;
@@ -164,3 +162,5 @@ const InputButton = styled(Send)`
     color: #222222;
   }
 `;
+
+export default Channel;
