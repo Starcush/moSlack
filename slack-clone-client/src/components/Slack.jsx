@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Option from './components/option/containers/OptionContainer';
-import WorkSpace from './components/workspace/container/WorkSpaceContainer';
-import ChannelList from './components/channelslist/container/ChannelList';
-import Channel from './components/channel/container/ChannelContainer';
+import Option from './option/containers/OptionContainer';
+import WorkSpace from './workspace/container/WorkSpaceContainer';
+import ChannelList from './channelslist/container/ChannelList';
+import Channel from './channel/container/ChannelContainer';
 
 const Slack = () => (
   <>

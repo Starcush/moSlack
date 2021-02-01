@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useMutation } from '@apollo/client';
 
-import ChannelHeaderView from '../views/ChannelHeaderView';
-import { showChannelDetail, updateCurChannel } from '../../js/redux/actions';
-import ModalContainer from '../modal/container/ModalContainer';
-import { MUTATION_CHANNEL_DELETE } from '../../js/apis/query';
+import ChannelHeaderView from '../view/ChannelHeaderView';
+import { showChannelDetail, updateCurChannel } from '../../../js/redux/actions';
+import ModalContainer from '../../modal/container/ModalContainer';
+import { MUTATION_CHANNEL_DELETE } from '../../../js/apis/query';
 
 const ChannelHeader = (props) => {
   const { curChannel } = props;
@@ -52,12 +52,12 @@ const ChannelHeader = (props) => {
 
   function fetchDeleteChannel(e) {
     e.preventDefault();
-    console.log('delete Channel, current channel is ', curChannel);
+    // console.log('delete Channel, current channel is ', curChannel);
     deleteChannel({
       variables: { id: curChannel.id },
     });
     if (!loading) {
-      console.log('data :: ', data);
+      // console.log('data :: ', data);
     }
     props.updateCurChannel({ id: 1, name: 'general' });
   }

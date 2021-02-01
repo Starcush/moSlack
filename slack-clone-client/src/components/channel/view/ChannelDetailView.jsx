@@ -2,23 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { Close } from '@styled-icons/material';
 
-const ChannelDetailView = ({ showDetail, closeDetail, channel }) => {
-  const test = 1;
-  return (
-    <Container show={showDetail}>
-      <Header>
-        세부정보
-        {channel.name}
-        <CloseIcon onClick={closeDetail} />
-      </Header>
-      <Main>
-        Main
-      </Main>
-    </Container>
-  );
-};
-
-export default ChannelDetailView;
+const ChannelDetailView = ({ showDetail, closeDetail, channel }) => (
+  <Container show={showDetail}>
+    <Header>
+      세부정보
+      {channel.name}
+      <CloseIcon onClick={closeDetail} />
+    </Header>
+    <Main>
+      Main
+    </Main>
+  </Container>
+);
 
 const Container = styled.div`
   display: ${({ show }) => (show ? 'flex' : 'none')};
@@ -44,3 +39,5 @@ const CloseIcon = styled(Close)`
   width: 20px;
   height: 20px;
 `;
+
+export default ChannelDetailView;

@@ -27,8 +27,6 @@ const ChannelHeaderView = ({
   </>
 );
 
-export default ChannelHeaderView;
-
 const HeaderContainer = styled.div`
   flex: 1.5;
   box-sizing: border-box;
@@ -74,3 +72,5 @@ const InformationIcon = styled(InformationCircle)`
   height: 25px;
   color: gray;
 `;
+
+export default ChannelHeaderView;

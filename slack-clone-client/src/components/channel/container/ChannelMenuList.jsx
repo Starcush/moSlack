@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ChannelMenuListView from '../views/ChannelMenuListView';
+import ChannelMenuListView from '../view/ChannelMenuListView';
 
 const ChannelMenuList = () => (<ChannelMenuListView />);
 
