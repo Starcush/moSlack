@@ -1,14 +1,14 @@
 import React from 'react';
 import dotenv from 'dotenv';
 
-import { googleLogin } from '../../js/apis/api';
-import LoginButton from '../views/LoginButton';
+import { googleLogin } from '../../../js/apis/api';
+import LoginButtonView from '../views/LoginButtonView';
 
 dotenv.config();
 
 const GoogleLoginButton = () => {
   return (
-    <LoginButton responseGoogle={responseGoogle} />
+    <LoginButtonView responseGoogle={responseGoogle} />
   );
 
   async function responseGoogle(res) {

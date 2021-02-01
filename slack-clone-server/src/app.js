@@ -38,6 +38,7 @@ const typeDefs = `
 
   type Mutation {
     addChannel(name: String!): [Channel!]!
+    deleteChannel(id: Int!): [Channel]
     postContent(userID: Int!, channelID: Int!, content: String!): [Contents]
   }
 

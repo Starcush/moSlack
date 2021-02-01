@@ -1,30 +1,38 @@
-import { UPDATE_CHANNELID, UPDATE_CHANNELLIST } from '../actionTypes';
+import * as type from '../actionTypes';
 
 const initialState = {
-  channelID: 1,
+  channel: { id: 1, name: '' },
   channelList: [],
+  showDetail: false,
 };
 
 export default function channelReducer(state = initialState, action) {
   switch (action.type) {
-  case UPDATE_CHANNELID: {
-    const { channelID } = action.payload;
+  case type.UPDATE_CURCHANNEL: {
+    const { channel } = action.payload;
+    // console.log('channel in reducer ::: ', channel);
     return {
       ...state,
-      channelID,
+      channel,
     };
   }
-  case UPDATE_CHANNELLIST: {
+  case type.UPDATE_CHANNELLIST: {
     const { channelList } = action.payload;
     return {
       ...state,
       channelList,
     };
   }
+  case type.SHOW_CHANNEL_DETAIL: {
+    console.log('redux show detail action');
+    const { showDetail } = action.payload;
+    return {
+      ...state,
+      showDetail,
+    };
+  }
 
   default:
-    return {
-      channelID: state.channelID,
-    };
+    return state;
   }
 }

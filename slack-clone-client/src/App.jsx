@@ -1,5 +1,5 @@
 import React from 'react';
-import Slack from './components/containers/Slack';
+import Slack from './components/Slack';
 
 function App() {
   return <Slack />;

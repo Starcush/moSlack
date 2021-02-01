@@ -13,6 +13,7 @@ const {
   getChannelContents,
   postContent,
   getContent,
+  deleteChannel,
 } = require('./utils');
 
 dotenv.config();
@@ -95,6 +96,19 @@ const resolvers = {
         return result;
       } catch (e) {
         console.log('graphql resolver addChannel', e);
+      }
+    },
+    deleteChannel: async (_, { id }, { pubsub }) => {
+      try {
+        console.log('deleted channel id in resolvers ,', id);
+        await deleteChannel(id);
+        const result = await getChannelList();
+        pubsub.publish(PUBSUB_CHANNEL_LIST, {
+          channelSubscription: result,
+        });
+        return result;
+      } catch (e) {
+        console.log('graphql resolver deleteChannel', e);
       }
     },
     postContent: async (_, { userID, channelID, content }, { pubsub }) => {

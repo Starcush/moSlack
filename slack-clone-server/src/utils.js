@@ -62,6 +62,16 @@ const addChannel = async (channelName) => {
   }
 };
 
+const deleteChannel = async (channelId) => {
+  try {
+    const query = 'delete from `CHANNELS` where id = ?';
+    const param = [channelId];
+    await connection.promise().query(query, param);
+  } catch (e) {
+    console.log('util delete channel', e);
+  }
+};
+
 const getChannelContents = async (channelId) => {
   try {
     console.log(`query ${channelId} channel contents`);
@@ -107,6 +117,7 @@ module.exports = {
   getUserInfoByEmail,
   getChannelList,
   addChannel,
+  deleteChannel,
   getChannelContents,
   postContent,
   getContent,

@@ -25,7 +25,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <ThemeProvider theme={{ backgroundColor: '#4A154B' }}>
+        <ThemeProvider theme={{ backgroundColor: '#4A154B', secondaryColor: '#684A68' }}>
           <App />
           <GlobalStyle />
         </ThemeProvider>

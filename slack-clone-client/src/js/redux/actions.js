@@ -1,17 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import * as type from './actionTypes';
 
-export const updateList = (text) => ({
-  type: type.UPDATE_LIST,
+export const updateCurChannel = (channel) => ({
+  type: type.UPDATE_CURCHANNEL,
   payload: {
-    text,
-  },
-});
-
-export const updateChannelID = (channelID) => ({
-  type: type.UPDATE_CHANNELID,
-  payload: {
-    channelID,
+    channel,
   },
 });
 
@@ -19,6 +12,13 @@ export const updateChannelList = (channelList) => ({
   type: type.UPDATE_CHANNELLIST,
   payload: {
     channelList,
+  },
+});
+
+export const showChannelDetail = (showDetail) => ({
+  type: type.SHOW_CHANNEL_DETAIL,
+  payload: {
+    showDetail,
   },
 });
 

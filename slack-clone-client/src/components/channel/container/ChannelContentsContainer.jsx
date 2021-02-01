@@ -1,23 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import moment from 'moment';
 
-import {
-  ContentsListDiv,
-  ChannelContentsDiv,
-  ContentHeader,
-  ProfileImgDiv,
-  UserDiv,
-  Time,
-  ContentSection,
-  ImgCol,
-  ContentCol,
-} from '../views/StyledComponents';
-import { QUERY_CHAT, SUBSCRIPTION_CHAT } from '../../js/apis/query';
+import { QUERY_CHAT, SUBSCRIPTION_CHAT } from '../../../js/apis/query';
+import ChannelContentsView from '../view/ChannelContentsView';
 
 const ChannelContentsList = (props) => {
-  const { channelID } = props;
+  const { channel } = props;
+  const channelID = channel.id;
   const { loading, data, subscribeToMore } = useQuery(QUERY_CHAT, {
     variables: { channelId: channelID },
   });
@@ -41,27 +32,16 @@ const ChannelContentsList = (props) => {
   }, [channelID, subscribeToMore]);
 
   return (
-    <ContentsListDiv>
-      {!loading && data.channelContents.map((c) => {
-        if (c.channel_id !== channelID) {
-          return <></>;
-        }
-        return (
-          <ChannelContentsDiv>
-            <ImgCol>
-              <ProfileImgDiv img={c.profileImg} />
-            </ImgCol>
-            <ContentCol>
-              <ContentHeader>
-                <UserDiv>{c.name}</UserDiv>
-                <Time>{timeFormatting(c.time)}</Time>
-              </ContentHeader>
-              <ContentSection>{c.content}</ContentSection>
-            </ContentCol>
-          </ChannelContentsDiv>
-        );
-      })}
-    </ContentsListDiv>
+    <>
+      {!loading
+        && (
+          <ChannelContentsView
+            channelID={channelID}
+            data={data}
+            timeFormatting={timeFormatting}
+          />
+        )}
+    </>
   );
 
   function timeFormatting(time) {
@@ -91,8 +71,7 @@ const ChannelContentsList = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  list: state.updateList.list,
-  channelID: state.channelReducer.channelID,
+  channel: state.channelReducer.channel,
 });
 
 export default connect(mapStateToProps)(ChannelContentsList);

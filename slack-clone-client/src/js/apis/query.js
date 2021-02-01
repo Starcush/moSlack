@@ -45,15 +45,24 @@ export const MUTATION_CHANNEL_ADD = gql`
 `;
 
 export const MUTATION_CONTENTS_ADD = gql`
-mutation postContent($userID: Int!, $channelID: Int!, $content: String!) {
-  postContent(userID: $userID, channelID: $channelID , content: $content) {
-    id
-    user_id
-    channel_id
-    time
-    content
+  mutation postContent($userID: Int!, $channelID: Int!, $content: String!) {
+    postContent(userID: $userID, channelID: $channelID , content: $content) {
+      id
+      user_id
+      channel_id
+      time
+      content
+    }
   }
-}
+`;
+
+export const MUTATION_CHANNEL_DELETE = gql`
+  mutation deleteChannel($id: Int!){
+    deleteChannel(id: $id) {
+      id
+      name
+    }
+  }
 `;
 
 // subsription
