@@ -5,7 +5,7 @@ import { InformationCircle } from '@styled-icons/heroicons-outline';
 import ChannelMenuListView from './ChannelMenuListView';
 
 const ChannelHeaderView = ({
-  curChannel, handleMenuItems, showMenus, handleCheckModal, isDefaultChannel,
+  curChannel, handleMenuItems, showMenus, handleCheckModal,
 }) => (
   <>
     {curChannel
@@ -18,7 +18,7 @@ const ChannelHeaderView = ({
           </Title>
         </ContentsContainer>
         <IconContainer>
-          <InformationIcon onClick={() => !isDefaultChannel && handleMenuItems(true)} />
+          <InformationIcon onClick={() => (curChannel.id !== 1) && handleMenuItems(true)} />
         </IconContainer>
       </HeaderDiv>
       <ChannelMenuListView showMenus={showMenus} handleCheckModal={handleCheckModal} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useMutation } from '@apollo/client';
@@ -12,17 +12,8 @@ const ChannelHeader = (props) => {
   const { curChannel } = props;
   const [showMenuItems, setShowMenuItems] = useState(false);
   const [showCheckModal, setShowCheckModal] = useState(false);
-  const [isDefaultChannel, setIsDefaultChannel] = useState(true);
 
-  const [deleteChannel, { data, loading }] = useMutation(MUTATION_CHANNEL_DELETE);
-
-  useEffect(() => {
-    if (curChannel.id === 1) {
-      setIsDefaultChannel(true);
-    } else {
-      setIsDefaultChannel(false);
-    }
-  }, [curChannel]);
+  const [deleteChannel, { loading }] = useMutation(MUTATION_CHANNEL_DELETE);
 
   return (
     <>
@@ -31,7 +22,6 @@ const ChannelHeader = (props) => {
         handleMenuItems={handleMenuItems}
         showMenus={showMenuItems}
         handleCheckModal={handleCheckModal} // 여기서는 check modal이 켜지기만 한다
-        isDefaultChannel={isDefaultChannel}
       />
       <ModalContainer
         type="check"
@@ -42,6 +32,7 @@ const ChannelHeader = (props) => {
     </>
   );
 
+  // 채널 삭제 메뉴가 보임, general 채널은 삭제 불가능
   function handleMenuItems() {
     setShowMenuItems(!showMenuItems);
   }
@@ -53,13 +44,14 @@ const ChannelHeader = (props) => {
   function fetchDeleteChannel(e) {
     e.preventDefault();
     // console.log('delete Channel, current channel is ', curChannel);
+    if (curChannel.id === 1) return;
     deleteChannel({
       variables: { id: curChannel.id },
     });
-    if (!loading) {
-      // console.log('data :: ', data);
-    }
-    props.updateCurChannel({ id: 1, name: 'general' });
+    setShowCheckModal(false);
+    setShowMenuItems(false);
+    // 이게 saga에서 작동해야할까?
+    props.updateCurChannel(1);
   }
 };
 

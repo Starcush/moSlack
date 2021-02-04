@@ -7,8 +7,8 @@ import { QUERY_CHAT, SUBSCRIPTION_CHAT } from '../../../js/apis/query';
 import ChannelContentsView from '../view/ChannelContentsView';
 
 const ChannelContentsList = (props) => {
-  const { channel } = props;
-  const channelID = channel.id;
+  const { channelState } = props;
+  const channelID = channelState.channelInfo.id;
   const { loading, data, subscribeToMore } = useQuery(QUERY_CHAT, {
     variables: { channelId: channelID },
   });
@@ -71,7 +71,7 @@ const ChannelContentsList = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  channel: state.channelReducer.channel,
+  channelState: state.channelReducer,
 });
 
 export default connect(mapStateToProps)(ChannelContentsList);

@@ -1,7 +1,7 @@
 import * as type from '../actionTypes';
 
 const initialState = {
-  channel: { id: 1, name: '' },
+  channelInfo: { id: null, name: null },
   channelList: [],
   showDetail: false,
 };
@@ -9,11 +9,11 @@ const initialState = {
 export default function channelReducer(state = initialState, action) {
   switch (action.type) {
   case type.UPDATE_CURCHANNEL: {
-    const { channel } = action.payload;
-    // console.log('channel in reducer ::: ', channel);
+    const { channelId } = action.payload;
+    const channelInfo = state.channelList.find((channel) => channel.id === channelId);
     return {
       ...state,
-      channel,
+      channelInfo,
     };
   }
   case type.UPDATE_CHANNELLIST: {

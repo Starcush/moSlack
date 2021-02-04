@@ -4,24 +4,23 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { QUERY_CHANNEL, SUBSCRIPTION_CHANNEL } from '../../../js/apis/query';
-import { updateCurChannel } from '../../../js/redux/actions';
+import { updateCurChannel, updateChannelList } from '../../../js/redux/actions';
 import ChannelListView from '../view/ChannelListView';
 
 const ChannelList = (props) => {
+  const { channelState } = props;
   const [toggleClicked, setToggleClicked] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [curChannelId, setCurChannelId] = useState(1);
+  // const [curChannelId, setCurChannelId] = useState(1);
 
   const { loading, data, subscribeToMore } = useQuery(QUERY_CHANNEL);
 
-  // channel header에 채널 이름을 보여주기 위한 useEffect, redux async로 변경 예정
+  //
   useEffect(() => {
     if (!loading) {
-      const { channelList } = data;
-      const curChannel = channelList.find((channel) => channel.id === curChannelId);
-      props.updateCurChannel(curChannel);
+      props.updateChannelList(data.channelList);
     }
-  }, [curChannelId, data, loading, props]);
+  }, [data]);
 
   // subscription을 위한 useEffect
   useEffect(() => {
@@ -46,7 +45,7 @@ const ChannelList = (props) => {
     && (
       <ChannelListView
         data={data}
-        curChannelId={curChannelId}
+        curChannelId={channelState.channelInfo.id}
         showAddModal={showAddModal}
         toggleClicked={toggleClicked}
         toggleList={toggleList}
@@ -70,14 +69,21 @@ const ChannelList = (props) => {
   }
 
   function handleCurChannel(id) {
-    setCurChannelId(id);
+    props.updateCurChannel(id);
   }
 };
+
+function mapStateToProps(state) {
+  return {
+    channelState: state.channelReducer,
+  };
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     updateCurChannel,
+    updateChannelList,
   }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(ChannelList);
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);

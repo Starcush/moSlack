@@ -36,5 +36,6 @@ module.exports = {
     'import/default': 2,
     'import/export': 2,
     'react/prop-types': 0,
+    'react-hooks/exhaustive-deps': 'off',
   },
 };
