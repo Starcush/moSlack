@@ -29,7 +29,7 @@ React와 GraphQL를 중심으로 학습하기 위해 업무용 메신저로 사�
 
 - [x] Eslint, prettier를 이용한 Coding Convention 설정하기 - airbnb
 - [x] React, Styled-Component를 활용한 UI 구성<br>
-- [x] Redux를 적용한 상태관리<br>
+- [x] Redux를 적용한 상태관리 / [토이프로젝트로 공부하기 - Redux](https://velog.io/@cush_wa/Redux)<br>
 - [x] Rest API 대신 GraphQL을 사용한 api 작성<br>
 - [x] ~~Socket.io를 사용해서 채팅 구현하기~~ Socketio 대신 GraphQL의 Subscription을 사용<br>
 - [x] OAuth2.0을 기반으로 한 구글 소셜 로그인 적용<br>
