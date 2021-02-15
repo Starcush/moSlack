@@ -1,10 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import * as type from './actionTypes';
 
-export const updateCurChannel = (channel) => ({
+export const updateCurChannel = (channelId) => ({
   type: type.UPDATE_CURCHANNEL,
   payload: {
-    channel,
+    channelId,
   },
 });
 

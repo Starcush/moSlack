@@ -11,7 +11,7 @@ const ChannelDetail = (props) => {
     <ChannelDetailView
       showDetail={channelState.showDetail}
       closeDetail={closeDetail}
-      channel={channelState.channel}
+      channel={channelState.channelInfo}
     />
   );
 

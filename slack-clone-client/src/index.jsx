@@ -7,7 +7,7 @@ import client from './apolloClient';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './js/redux/store';
+import reduxStore from './js/redux/store';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -21,20 +21,22 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <ThemeProvider theme={{ backgroundColor: '#4A154B', secondaryColor: '#684A68' }}>
-          <App />
-          <GlobalStyle />
-        </ThemeProvider>
-      </Provider>
-    </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
-
+reduxStore().then((res) => {
+  const store = res;
+  ReactDOM.render(
+    <React.StrictMode>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <ThemeProvider theme={{ backgroundColor: '#4A154B', secondaryColor: '#684A68' }}>
+            <App />
+            <GlobalStyle />
+          </ThemeProvider>
+        </Provider>
+      </ApolloProvider>
+    </React.StrictMode>,
+    document.getElementById('root'),
+  );
+});
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

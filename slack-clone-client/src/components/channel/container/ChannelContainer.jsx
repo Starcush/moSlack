@@ -10,8 +10,7 @@ const Channel = (props) => {
   const [textArea, setTextArea] = useState('');
   const [showLoginErrorModal, setShowLoginErrorModal] = useState(false);
   const { channelState } = props;
-  const { channel: curChannel, showDetail } = channelState;
-
+  const { channelInfo: curChannel, showDetail } = channelState;
   const [postContent] = useMutation(MUTATION_CONTENTS_ADD);
 
   return (
