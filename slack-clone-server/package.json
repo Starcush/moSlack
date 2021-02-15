@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src/ -w -d dist/js",
-    "lint": "./node_modules/.bin/eslint --fix src/**/*.js",
-    "prettier": "prettier --write src/**/*.js"
+    "lint": "./node_modules/.bin/eslint --fix src/**/*.js"
   },
   "keywords": [],
   "author": "",
@@ -27,8 +26,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "husky": "^4.3.7",
-    "lint-staged": "^10.5.3",
-    "prettier": "^2.2.1"
+    "lint-staged": "^10.5.3"
   },
   "husky": {
     "hooks": {
@@ -36,7 +34,6 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js": "npm run lint",
-    "src/**/*.{js,css,md}": "npm run prettier"
+    "src/**/*.js": "npm run lint"
   }
 }

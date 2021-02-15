@@ -39,8 +39,7 @@
     "build:production": "dotenv -e .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "node_modules/.bin/eslint src/**/*.{js,jsx} --fix",
-    "prettier": "prettier --write \"src/**/*.{js,jsx,css,json}\""
+    "lint": "node_modules/.bin/eslint src/**/*.{js,jsx} --fix"
   },
   "husky": {
     "hooks": {
@@ -69,12 +68,9 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.3.0",
-    "lint-staged": "^10.5.2",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.0"
+    "lint-staged": "^10.5.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": "npm run lint",
-    "src/**/*.{js,jsx,css,md}": "npm run prettier"
+    "src/**/*.{js,jsx}": "npm run lint"
   }
 }

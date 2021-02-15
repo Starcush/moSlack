@@ -1,0 +1,43 @@
+{
+  "name": "slack-clone-coding",
+  "version": "1.0.0",
+  "description": "slack clone coding",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-client": "eslint -c slack-clone-client/.eslintrc.js slack-clone-client/src/**/*.{js,jsx} --fix",
+    "lint-server": "eslint -c slack-clone-server/.eslintrc.js slack-clone-server/src/**/*.js --fix",
+    "prettier": "prettier --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Starcush/slack-clone-coding.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Starcush/slack-clone-coding/issues"
+  },
+  "homepage": "https://github.com/Starcush/slack-clone-coding#readme",
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "husky": "^5.0.9",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "slack-clone-client/src/**/*.{js,jsx,md}": [
+      "npm run lint-client",
+      "npm run prettier"
+    ],
+    "slack-clone-server/src/**/*.{js,md}": [
+      "npm run lint-server",
+      "npm run prettier"
+    ]
+  }
+}
