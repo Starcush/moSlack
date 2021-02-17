@@ -1,0 +1,4 @@
+#Ignore Artifacts:
+slack-clone-client/reportWebVitals.js
+slack-clone-client/setupTests.js
+slack-clone-client/menifest.json
