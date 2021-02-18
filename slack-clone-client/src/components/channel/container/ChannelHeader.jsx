@@ -13,7 +13,7 @@ const ChannelHeader = (props) => {
   const [showMenuItems, setShowMenuItems] = useState(false);
   const [showCheckModal, setShowCheckModal] = useState(false);
 
-  const [deleteChannel, { loading }] = useMutation(MUTATION_CHANNEL_DELETE);
+  const [deleteChannel] = useMutation(MUTATION_CHANNEL_DELETE);
 
   return (
     <>
@@ -55,9 +55,13 @@ const ChannelHeader = (props) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  showChannelDetail,
-  updateCurChannel,
-}, dispatch);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      showChannelDetail,
+      updateCurChannel,
+    },
+    dispatch,
+  );
 
 export default connect(null, mapDispatchToProps)(ChannelHeader);
