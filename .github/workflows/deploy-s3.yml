@@ -19,8 +19,8 @@ jobs:
           path: ./slack-clone-client/node_modules
           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-build-client
-            ${{ runner.OS }}-client
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
 
       - name: install dependency
         run: npm install
