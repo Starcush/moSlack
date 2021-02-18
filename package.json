@@ -7,8 +7,7 @@
     "testing": "echo \"hello\"",
     "lint-client": "eslint -c slack-clone-client/.eslintrc.js slack-clone-client/src/**/*.{js,jsx} --fix",
     "lint-server": "eslint -c slack-clone-server/.eslintrc.js slack-clone-server/src/**/*.js --fix",
-    "prettier": "prettier --write",
-    "postinstall": "husky install"
+    "prettier": "prettier --write"
   },
   "repository": {
     "type": "git",
