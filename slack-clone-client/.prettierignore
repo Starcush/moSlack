@@ -1,0 +1,4 @@
+#Ignore Artifacts:
+reportWebVitals.js
+setupTests.js
+menifest.json

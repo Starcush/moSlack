@@ -39,7 +39,7 @@
     "build:production": "dotenv -e .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "node_modules/.bin/eslint src/**/*.{js,jsx} --fix"
+    "lint": "node_modules/.bin/eslint src/**/*.{js,json,jsx,md} --fix"
   },
   "husky": {
     "hooks": {
@@ -71,6 +71,6 @@
     "lint-staged": "^10.5.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": "npm run lint"
+    "src/**/*.{js,json,jsx,md}": "npm run lint"
   }
 }
