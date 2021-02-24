@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - 26-githubactions
 
 jobs:
   build-and-deploy:
@@ -24,6 +27,14 @@ jobs:
 
       - name: install dependency
         run: npm install
+        working-directory: ./slack-clone-client
+
+      - name: create env file
+        run: |
+          touch .env.production
+          echo REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }} >> .env.production
+          echo REACT_APP_ENDPOINT=${{ secrets.REACT_APP_ENDPOINT }} >> .env.production
+          cat .env.production
         working-directory: ./slack-clone-client
 
       - name: build project
