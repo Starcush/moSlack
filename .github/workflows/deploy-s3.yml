@@ -26,6 +26,14 @@ jobs:
         run: npm install
         working-directory: ./slack-clone-client
 
+      - name: create env file
+        run: |
+          touch .env.production
+          echo REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }} >> .env.production
+          echo REACT_APP_ENDPOINT=${{ secrets.REACT_APP_ENDPOINT }} >> .env.production
+          cat .env.production
+        working-directory: ./slack-clone-client
+
       - name: build project
         run: npm run build:production
         working-directory: ./slack-clone-client
@@ -40,4 +48,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            build s3://the-slack # 자신의 레포지토리로 변경해주세요.
+            ./slack-clone-client/build s3://the-slack # 자신의 레포지토리로 변경해주세요.

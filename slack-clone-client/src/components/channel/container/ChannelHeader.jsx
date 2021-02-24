@@ -55,13 +55,12 @@ const ChannelHeader = (props) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      showChannelDetail,
-      updateCurChannel,
-    },
-    dispatch,
-  );
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    showChannelDetail,
+    updateCurChannel,
+  },
+  dispatch,
+);
 
 export default connect(null, mapDispatchToProps)(ChannelHeader);
