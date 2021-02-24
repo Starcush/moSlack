@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src/ -w -d dist/js",
-    "lint": "./node_modules/.bin/eslint --fix src/**/*.js"
+    "lint": "./node_modules/.bin/eslint src/**/*.jssrc/**/*.{js,json,md} --fix"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +34,6 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js": "npm run lint"
+    "src/**/*.{js,json,md}": "npm run lint"
   }
 }
