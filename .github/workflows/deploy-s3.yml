@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - 26-githubactions
 
 jobs:
   build-and-deploy:
@@ -51,4 +48,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            build s3://the-slack # 자신의 레포지토리로 변경해주세요.
+            ./slack-clone-client/build s3://the-slack # 자신의 레포지토리로 변경해주세요.
